@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 圆角背景 白色 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- 灰色背景 -->
+            <item>
+                <shape android:shape="rectangle">
+
+                    <size android:width="46dp" android:height="25dp" />
+                    <solid android:color="@color/ceeeeee" />
+
+                    <corners android:radius="13dp" />
+                </shape>
+            </item>
+            <!-- 选中区域 -->
+            <item android:bottom="2dp" android:left="23dp" android:right="2dp" android:top="2dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/main_orange" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_checked="false">
+        <layer-list>
+            <!-- 灰色背景 -->
+            <item>
+                <shape android:shape="rectangle">
+
+                    <size android:width="46dp" android:height="25dp" />
+                    <solid android:color="@color/ceeeeee" />
+
+                    <corners android:radius="13dp" />
+                </shape>
+            </item>
+            <!-- 选中区域 -->
+            <item android:bottom="2dp" android:left="2dp" android:right="23dp" android:top="2dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/gray" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
+

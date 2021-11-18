@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/cover_player_controller_top_container"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@drawable/player_shape_controller_top_gradient"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/cover_player_controller_image_view_back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:paddingStart="13dp"
+            android:paddingEnd="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/player_cover_back_white" />
+
+        <ImageView
+            android:id="@+id/cast_btn"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerInside"
+            android:src="@mipmap/player_cover_cast_icon" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/cover_player_controller_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/player_gradient_90_66_00"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/cover_player_controller_image_view_play_state"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:paddingEnd="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/player_selector_play_state" />
+
+        <TextView
+            android:id="@+id/cover_player_controller_text_view_curr_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="00:00:00"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <SeekBar
+            android:id="@+id/cover_player_controller_seek_bar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:max="100"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progressDrawable="@drawable/player_bottom_seek_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/jz_bottom_seek_thumb" />
+
+        <TextView
+            android:id="@+id/cover_player_controller_text_view_total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="00:00:00"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/cover_player_controller_image_view_switch_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="18dp"
+            android:paddingEnd="16dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/player_enlarge_icon" />
+    </LinearLayout>
+
+    <!--投屏设备选择框-->
+    <RelativeLayout
+        android:id="@+id/select_panel_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:background="#00000000"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:id="@+id/select_panel"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/cE6111111" />
+    </RelativeLayout>
+</RelativeLayout>

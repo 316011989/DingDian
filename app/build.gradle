@@ -1,0 +1,164 @@
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
+import java.security.MessageDigest
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'bugly'
+
+android {
+    compileSdkVersion 30
+    compileOptions {//java8支持
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    defaultConfig {
+        applicationId "cn.video.star"
+        minSdkVersion 21
+        targetSdkVersion 30
+        buildToolsVersion = '30.0.2'
+        versionCode 411
+        versionName "4.1.1"
+        flavorDimensions "versionCode"
+        multiDexEnabled true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86"
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "cn.video.star",
+                JPUSH_APPKEY : "60f63aaa2a1a2a58e7ddcd92", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs', '../playerbase/libs'
+        }
+    }
+    signingConfigs {
+        //加载properties
+        def properties = new Properties()
+        def inputStream = project.rootProject.file('local.properties').newDataInputStream()
+        properties.load(inputStream)
+
+        config {
+            storeFile file(properties.getProperty('RELEASE_STORE_FILE'))
+            keyAlias 'movie'
+            keyPassword 'ikickercn'
+            storePassword 'ikickercn'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            //log 开关
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/beans.xml'
+    }
+
+    productFlavors {
+        dingdian {}
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [ChannelValue: name]
+        flavor.setSigningConfig(signingConfigs.config)
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+
+
+def md5apk(file) {
+    try {
+        def input = new FileInputStream(file)
+        MappedByteBuffer byteBuffer = input.getChannel().map(FileChannel.MapMode.READ_ONLY, 0,
+                file.length())
+        MessageDigest md5 = MessageDigest.getInstance("MD5")
+        md5.update(byteBuffer)
+        BigInteger bi = new BigInteger(1, md5.digest())
+        def value = bi.toString(16)
+        println("md5: " + value)
+    } catch (Exception e) {
+        e.printStackTrace()
+    }
+}
+
+//./gradlew md5
+task md5() {
+//    md5apk(new File(getBuildDir().parent + '/ymdy/release/app-ymdy-release.apk'))
+    md5apk(new File('D:\\360jiagubao_windows_64\\jiagu\\output\\ymdy_311_test1_311_jiagu_sign.apk'))
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation project(':junecore')
+    implementation project(':playerbase')
+    implementation project(':flutter')
+
+    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.21'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // Architecture components
+    implementation rootProject.ext.dependencies["lifecycle-runtime"]
+    implementation rootProject.ext.dependencies["lifecycle-extensions"]
+    kapt rootProject.ext.dependencies["lifecycle-compiler"]
+    implementation 'androidx.room:room-runtime:2.2.5'
+    kapt 'androidx.room:room-compiler:2.2.5'
+    api rootProject.ext.dependencies["glide"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
+    implementation 'org.jetbrains.anko:anko-commons:0.10.7'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.24'
+
+//    implementation 'com.cdnbye:sdk:0.7.1'//p2p cdnbye sdk 不使用p2p了
+
+    implementation 'org.greenrobot:eventbus:3.1.1'//下载功能使用eventbus进行通知
+    implementation 'com.alibaba:fastjson:1.2.58'//下载对象
+
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // 下面各SDK根据宿主App是否使用相关业务按需引入。
+    // OAID目前为目前国内市场主流的Android Q设备标识，可根据需要选择。
+    // 友盟统计SDK
+    implementation 'com.umeng.umsdk:common:9.3.8' // (必选)
+    implementation 'com.umeng.umsdk:asms:1.2.2' // asms包依赖(必选)
+    implementation 'com.umeng.umsdk:apm:1.2.0'//推荐，错误分析升级为U-APM产品，关注crash数据需集成
+
+    //穿山甲sdk
+    implementation 'com.pangle.cn:ads-sdk-pro:3.9.0.2'
+}

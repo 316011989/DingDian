@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cffffff">
+
+    <FrameLayout
+        android:id="@+id/videoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="#000000" />
+
+    <RelativeLayout
+        android:id="@+id/backLay"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/back_white" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/playerwindow_banner_ad1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_4"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_4"
+        android:visibility="gone" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bottomScrollLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/playerwindow_banner_ad1"
+        android:layout_below="@id/videoContainer"
+        android:background="@color/cffffff"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/cffffff">
+
+            <RelativeLayout
+                android:id="@+id/movieHanle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cffffff"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:id="@+id/movieTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="片名"
+                    android:textColor="@color/c222222"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/movieToInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/movieTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:drawablePadding="@dimen/dp_4"
+                    android:text="简介"
+                    android:textColor="@color/c444444"
+                    app:drawableEndCompat="@mipmap/more_arrow" />
+
+                <TextView
+                    android:id="@+id/fromText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/movieTitle"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="年代  类型"
+                    android:textColor="@color/c888888"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/movieInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fromText"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="4dp"
+                    android:maxLines="3"
+                    android:text="影片介绍:"
+                    android:textColor="@color/c888888"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:id="@+id/movieLikelay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/movieInfo"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/likeButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/likeButtonIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:text="@string/like"
+                            android:textColor="@color/c444444"
+                            android:textSize="12sp"
+                            android:visibility="visible"
+                            app:drawableStartCompat="@mipmap/like_movie_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/downButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:text="@string/cache"
+                            android:textColor="@color/c444444"
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@mipmap/down_movie_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/shareButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="8dp"
+                            android:gravity="center"
+                            android:text="@string/share"
+                            android:textColor="@color/c444444"
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@mipmap/share_movie_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/movieLikelay"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cF2F2F2" />
+
+                <LinearLayout
+                    android:id="@+id/resourcesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/line1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/resourceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/resource"
+                        android:textColor="@color/c222222"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/resourceListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/cffffff"
+                        android:nestedScrollingEnabled="false" />
+
+                    <View
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/cF2F2F2" />
+                </LinearLayout>
+
+                <!--选集-->
+                <LinearLayout
+                    android:id="@+id/episodeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/resourcesLayout"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:id="@+id/episodeLay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/select_esp"
+                            android:textColor="@color/c222222"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/movieUpdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/episodeCount"
+                            android:textColor="@color/c222222"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/episodeCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toStartOf="@+id/arrow_icon"
+                            android:text="全0集"
+                            android:textColor="@color/c000000"
+                            android:textSize="12sp"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/arrow_24_right" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/episodeListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/cffffff"
+                        android:nestedScrollingEnabled="false" />
+
+                    <View
+                        android:id="@+id/line3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/cF2F2F2" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/recommendText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/episodeLayout"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/recommend"
+                    android:textColor="@color/c222222"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recommendListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/recommendText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/cffffff"
+                    android:nestedScrollingEnabled="false" />
+            </RelativeLayout>
+
+            <!--简介、选集、缓存-->
+            <RelativeLayout
+                android:id="@+id/playerContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cffffff"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include layout="@layout/player_cache_layout" />
+
+    <cn.junechiu.junecore.widget.common.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        wheel:matProg_barColor="#F9D80D"
+        wheel:matProg_barWidth="3dp"
+        wheel:matProg_progressIndeterminate="true"
+        wheel:matProg_spinSpeed="1.2" />
+
+    <TextView
+        android:id="@+id/noEspText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/ikicker_fill_f9d80d_val"
+        android:paddingLeft="10dp"
+        android:paddingTop="6dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="6dp"
+        android:text="@string/video_adding"
+        android:textColor="#222222"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/interaction_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_70p"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/castContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bannerContainer" >
+        <!--新版投屏-->
+        <include layout="@layout/player_cover_layout_cast_list_portrait"/>
+    </RelativeLayout>
+</RelativeLayout>

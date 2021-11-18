@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/cover_player_controller_bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/c33000000">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true">
+
+            <ImageView
+                    android:id="@+id/rewind_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="15dp"
+                    android:layout_toLeftOf="@+id/cover_player_controller_image_view_play_state"
+                    android:layout_marginRight="20dp"
+                    android:src="@mipmap/window_rewind"/>
+
+            <ImageView
+                    android:id="@+id/cover_player_controller_image_view_play_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="15dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/player_selector_window_play"/>
+
+            <ImageView
+                    android:id="@+id/forward_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="15dp"
+                    android:layout_toRightOf="@+id/cover_player_controller_image_view_play_state"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/window_forward"/>
+
+            <ProgressBar
+                    android:id="@+id/bottom_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:max="100"
+                    android:progressDrawable="@drawable/bottom_progress"/>
+        </RelativeLayout>
+
+        <!--返回全屏-->
+        <ImageView
+                android:id="@+id/return_play"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:paddingBottom="20dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/window_return"/>
+
+        <!--关闭窗口-->
+        <ImageView
+                android:id="@+id/close_window"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerInside"
+                android:src="@mipmap/window_close"/>
+    </RelativeLayout>
+
+</RelativeLayout>

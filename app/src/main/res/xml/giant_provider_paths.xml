@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- /storage/emulated/0/Download/${applicationId}/.beta/apk-->
+    <external-path
+        name="beta_external_path"
+        path="Download/" />
+    <external-path
+        name="apk_download"
+        path="dingdianDownloads/" />
+    <external-path
+        name="apk_download"
+        path="DingdianVideo/" />
+    <!--/storage/emulated/0/Android/data/${applicationId}/files/apk/-->
+    <external-path
+        name="beta_external_files_path"
+        path="Android/data/" />
+
+    <external-path
+        name="files_root"
+        path="Android/data/cn.video.star/" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+    <external-files-path
+        name="external_files_path"
+        path="Download" />
+
+    <external-path
+        name="external_files"
+        path="." />
+    <external-files-path
+        name="external_files_path"
+        path="Download" />
+    <files-path
+        name="apks"
+        path="../apks" />
+    <files-path
+        name="plugs"
+        path="/plugs" />
+    <files-path
+        name="logs"
+        path="/" />
+    <root-path
+        name="download"
+        path="" />
+    <external-path
+        name="gdt_sdk_download_path"
+        path="GDTDOWNLOAD" />
+    <external-files-path
+        name="bdpath"
+        path="bddownload/" />
+    <external-path
+        name="bdpathsd"
+        path="bddownload/" />
+     
+    <external-path
+        name="external_files"
+        path="." />
+    <cache-path
+        name="apk1"
+        path="." />
+    <external-path
+        name="apk2"
+        path="." />
+    <external-path
+        name="tt_external_download"
+        path="Download" />
+    <files-path
+        name="tt_internal_file_download"
+        path="Download" />
+    <cache-path
+        name="tt_internal_cache_download"
+        path="Download" />
+
+    <external-path
+        name="ff_sdk_download_path"
+        path="FENGFEIDOWNLOAD" />
+    <cache-path
+        name="cache-path"
+        path="." />
+    <external-cache-path
+        name="external_cache_path"
+        path="." />
+    <external-files-path
+        name="bdpath"
+        path="bddownload/" />
+    <external-path
+        name="bdpathsd"
+        path="bddownload/" />
+    <external-cache-path
+        name="gdt_sdk_download_path1"
+        path="com_qq_e_download" />
+    <cache-path
+        name="gdt_sdk_download_path2"
+        path="com_qq_e_download" />
+    <external-path name="external_files" path="."/>
+
+</paths>

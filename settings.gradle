@@ -1,0 +1,8 @@
+include ':sdk-lecast-release'
+include ':app', ':junecore',':playerbase'
+// 加入下面配置
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'DingDian/flutter_plugin/.android/include_flutter.groovy'
+))

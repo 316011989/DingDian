@@ -1,0 +1,115 @@
+ext {
+    APP_PACKAGE = " cn.yumi.daka"
+//    BASE_URL = "\"http://47.94.144.80/\""       //正式环境
+//    APP_NAME = "\"千龙\"" //debug包
+
+    LOG_ENABLE = "true"     //log开关
+
+    //27 27.0.3 27 27.0.2
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28",
+            minSdkVersion    : 19,
+            targetSdkVersion : 27,
+            versionCode      : 3,
+            versionName      : "1.0.3"
+    ]
+
+    version = [
+            androidSupportSdkVersion: "28.0.0",
+            retrofitSdkVersion      : '2.6.1',
+            dagger2SdkVersion       : "2.4",
+            glideSdkVersion         : '4.9.0',
+            butterknifeSdkVersion   : "8.8.1",
+            espressoSdkVersion      : "2.2.2",
+            canarySdkVersion        : "1.5.4",
+            anko_version            : "0.10.4",
+            jpush_version           : "3.1.0",
+            jcore_version           : "1.1.8",
+            androidKTX              : "0.3",
+            archCommon              : "1.1.1",
+            lifecycle_version       : "1.1.1",
+            room_version            : "1.1.1",
+            rxjava2                 : '2.2.12',
+            rxandroid2              : '2.1.1',
+            okhttp3                 : "3.10.0"
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"              : 'androidx.appcompat:appcompat:1.0.0',
+            "design"                    : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "support-v4"                : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+            "cardview-v7"               : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "annotations"               : 'androidx.annotation:annotation:1.0.0',
+            "recyclerview-v7"           : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+            "cardview"                  : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "constraint"                : "com.android.support.constraint:constraint-layout:1.0.2",
+            "palette"                   : "com.android.support:palette-v7:${version["androidSupportSdkVersion"]}",
+
+            "arch-core"                 : "android.arch.core:common:${version["archCommon"]}",
+            "arch-runtime"              : "android.arch.core:runtime:${version["archCommon"]}",
+            "lifecycle-extensions"      : 'androidx.lifecycle:lifecycle-extensions:2.0.0',  // ViewModel and LiveData
+            "lifecycle-runtime"         : 'androidx.lifecycle:lifecycle-runtime:2.0.0',
+            "lifecycle-compiler"        : 'androidx.lifecycle:lifecycle-compiler:2.0.0',
+            "room-runtime"              : 'androidx.room:room-runtime:2.0.0',
+            "room-compiler"             : 'androidx.room:room-compiler:2.0.0',
+
+            //network
+            "retrofit"                  : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson"   : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-scalars": "com.squareup.retrofit2:converter-scalars:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava2"  : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+            "okhttp3"                   : "com.squareup.okhttp3:okhttp:${version["okhttp3"]}",
+            "okhttp-logging"            : "com.squareup.okhttp3:logging-interceptor:${version["okhttp3"]}",
+            "glide3"                    : "com.github.bumptech.glide:glide:3.8.0",
+            "glide"                     : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-compiler"            : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            "glide-loader-okhttp3"      : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
+
+            //rx2
+            "rxandroid2"                : "io.reactivex.rxjava2:rxandroid:${version["rxandroid2"]}",
+            "rxjava2"                   : "io.reactivex.rxjava2:rxjava:${version["rxjava2"]}",
+            "rxerrorhandler2"           : "me.jessyan:rxerrorhandler:2.1.0",
+
+            //tools
+            "dagger2"                   : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
+            "dagger2-compiler"          : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
+            "gson"                      : "com.google.code.gson:gson:2.8.2",
+            "fastjson"                  : 'com.alibaba:fastjson:1.1.67.android',
+            "utilcode"                  : "com.blankj:utilcode:1.9.10",
+
+            // Anko Commons
+            "anko-commons"              : "org.jetbrains.anko:anko-commons:${version["anko_version"]}",
+            // Anko Layouts // sdk15, sdk19, sdk21, sdk23 are also available
+            "anko-sdk25"                : "org.jetbrains.anko:anko-sdk25:${version["anko_version"]}",
+            "anko-appcompat-v7"         : "org.jetbrains.anko:anko-appcompat-v7:${version["anko_version"]}",
+            "anko-recyclerview"         : "org.jetbrains.anko:anko-recyclerview-v7:${version["anko_version"]}",
+            "anko-design"               : "org.jetbrains.anko:anko-design:${version["anko_version"]}",
+            "anko-coroutines"           : "org.jetbrains.anko:anko-coroutines:${version["anko_version"]}",
+            // Anko SQLite
+            "anko-sqlite"               : "org.jetbrains.anko:anko-sqlite:${version["anko_version"]}",
+
+            //数据库
+            "greendao"                  : 'org.greenrobot:greendao:3.2.2',
+
+            //微信sdk
+            "wechat-sdk"                : 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.0.2',
+
+            //test
+            "junit"                     : "junit:junit:4.12",
+            "androidJUnitRunner"        : "android.support.test.runner.AndroidJUnitRunner",
+            "runner"                    : "com.android.support.test:runner:0.5",
+            "espresso-core"             : "com.android.support.test.espresso:espresso-core:${version["espressoSdkVersion"]}",
+            "espresso-contrib"          : "com.android.support.test.espresso:espresso-contrib:${version["espressoSdkVersion"]}",
+            "espresso-intents"          : "com.android.support.test.espresso:espresso-intents:${version["espressoSdkVersion"]}",
+            "mockito-core"              : "org.mockito:mockito-core:1.+",
+            "timber"                    : "com.jakewharton.timber:timber:4.5.1",
+            "logger"                    : "com.orhanobut:logger:2.1.1",
+            "canary-debug"              : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
+            "canary-release"            : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
+            "umeng-analytics"           : "com.umeng.analytics:analytics:6.0.1",
+            "jpush"                     : "cn.jiguang.sdk:jpush:${version["jpush_version"]}",
+            "jcore"                     : "cn.jiguang.sdk:jcore:${version["jcore_version"]}",
+    ]
+}

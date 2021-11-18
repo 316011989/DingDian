@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cffffff"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/tipFilter"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/black_40p"
+        android:gravity="center"
+        android:text="@string/filter_cate"
+        android:textColor="@color/cFFF360"
+        android:textSize="12sp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/filterResultLay"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@color/cffffff"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/filter_text_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/filterTextlistView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_toEndOf="@id/filterTextlistView"
+                    android:src="@mipmap/arrow_pull_black" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <include layout="@layout/movie_filter_view" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/noDataView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="@string/no_movie_data"
+        android:textColor="@color/c444444"
+        android:textSize="15sp"
+        android:visibility="gone" />
+</FrameLayout>

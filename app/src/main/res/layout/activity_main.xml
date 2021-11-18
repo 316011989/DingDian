@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.video.star.ui.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomBar" />
+
+    <cn.junechiu.junecore.widget.bottomtab.BottomBarLayout
+        android:id="@+id/bottomBar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cFAFAFA" />
+
+    <FrameLayout
+        android:id="@+id/helloText2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c66000000"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/helloText"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_shape"
+        android:visibility="gone" />
+</RelativeLayout>

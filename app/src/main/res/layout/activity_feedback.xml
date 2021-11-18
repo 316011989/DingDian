@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cF2F2F2">
+
+        <include layout="@layout/include_title" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/toolbar"
+            android:alpha="0.1"
+            android:background="@color/c222222" />
+
+        <TextView
+            android:id="@+id/feedback_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="您的反馈是："
+            android:textColor="@color/c222222"
+            android:textSize="12sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/feedback_label"
+            android:background="@color/cffffff"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/feedback_content_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerView"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="反馈内容："
+            android:textColor="@color/c222222"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/feedbackContent"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@id/feedback_content_label"
+            android:background="@color/cffffff"
+            android:gravity="top|left"
+            android:hint="我们将为您不断改进"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:textColor="@color/c222222"
+            android:textColorHint="@color/cbbbbbb"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/feedbackContent"
+            android:background="@color/cffffff"
+            android:gravity="right"
+            android:paddingRight="15dp"
+            android:text="200字"
+            android:textColor="@color/cbbbbbb"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/tip_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textNum"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/xing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="2dp"
+                android:text="*"
+                android:textColor="@color/cff3b30" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/xing"
+                android:text="如果是播放卡顿，请尽量写上城市和运营商，以更好解决您的问题"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/editContact"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@id/tip_lay"
+            android:layout_marginTop="18dp"
+            android:background="@color/cffffff"
+            android:hint="请填写手机号或QQ"
+            android:paddingLeft="15dp"
+            android:textColor="@color/c222222"
+            android:textColorHint="@color/cbbbbbb"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

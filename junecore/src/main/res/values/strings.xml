@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">JuneCore</string>
+
+    <string name="ok">确定</string>
+    <string name="toast_app_permission">请进入手机设置配置应用权限</string>
+    <string name="rationale_ask_again">
+        没有相应的权限，此应用程序可能无法正常工作。请打开应用设置修改应用权限.
+    </string>
+    <string name="title_settings_dialog">权限申请</string>
+    <string name="title_settings_rationale">没有相应的权限，此应用程序可能无法正常工作。请点击允许使应用正常运行</string>
+    <string name="viewpager_indicator" formatted="false">%d/%d</string>
+
+    <string name="action_clip">裁剪</string>
+    <string name="msg_camera_invalid_permission_denied">无法打开相机，可能是权限被拒绝</string>
+    <string name="msg_camera_invalid_initial_failed">相机初始化失败，无法打开相机</string>
+    <string name="msg_camera_invalid_unknown_error">无法打开相机，未知错误</string>
+    <string name="msg_could_not_save_photo">无法保存图片</string>
+    <string name="msg_clipping_image">正在裁剪图片</string>
+
+    <string name="crop__saving">Saving picture…</string>
+    <string name="crop__wait">Please wait…</string>
+    <string name="crop__pick_error">No image sources available</string>
+</resources>

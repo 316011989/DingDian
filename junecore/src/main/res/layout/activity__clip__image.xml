@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <cn.junechiu.junecore.widget.clipimage.ClipImageView
+        android:id="@+id/clip_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom"
+        app:civClipCircle="false"
+        app:civClipPadding="0dp"
+        app:civClipRoundCorner="0dp"
+        app:civHeight="2"
+        app:civMaskColor="#B2000000"
+        app:civWidth="3" />
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@id/bottom"
+        android:background="@android:color/black"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        tools:layout_marginBottom="40dp">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@android:string/cancel"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/clip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="16dp"
+            android:text="@android:string/cut"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</RelativeLayout>

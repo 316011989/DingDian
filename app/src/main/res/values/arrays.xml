@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BlurImageView">
+        <attr name="radius" format="integer" />
+    </declare-styleable>
+
+    <string-array name="sources">
+        <item>CC</item>
+        <item>优酷</item>
+        <item>腾讯</item>
+        <item>爱奇艺</item>
+        <item>搜狐</item>
+        <item>芒果TV</item>
+        <item>韩剧TV</item>
+        <item>南瓜</item>
+        <item>美剧</item>
+    </string-array>
+</resources>

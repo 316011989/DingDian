@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="1.5dp"
+                android:background="@color/cffffff">
+
+    <FrameLayout
+            android:id="@+id/cover_layout"
+            android:layout_width="105dp"
+            android:layout_height="140dp"
+            android:layout_centerHorizontal="true">
+
+        <ImageView
+                android:id="@+id/movie_cover"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:src="@mipmap/default_cover"
+                android:scaleType="centerCrop"/>
+
+        <TextView
+                android:id="@+id/movie_update"
+                android:layout_width="105dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ikicker_gradient_90_66_00"
+                android:layout_gravity="bottom|left"
+                android:paddingBottom="5dp"
+                android:gravity="bottom|left"
+                android:paddingLeft="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/cffffff"
+                android:textSize="10sp"/>
+
+    </FrameLayout>
+
+    <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cover_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/c444444"
+            android:textSize="13sp"/>
+</RelativeLayout>

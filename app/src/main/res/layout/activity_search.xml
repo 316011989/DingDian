@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cffffff"
+    android:fitsSystemWindows="true">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cffffff" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cffffff"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_toStartOf="@id/cancelText">
+
+                <EditText
+                    android:id="@+id/searchEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/search_edit_bg"
+                    android:drawableStart="@mipmap/search_icon24"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="请输入片名"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingBottom="7dp"
+                    android:singleLine="true"
+                    android:textColor="@color/c444444"
+                    android:textColorHint="@color/cCCCCCC"
+                    android:textCursorDrawable="@drawable/edit_cursor_color"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/closeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/searchEdit"
+                    android:layout_centerVertical="true"
+                    android:padding="15dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/search_close_icon"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/cancelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="@string/cancel"
+                android:textColor="@color/main"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/topbar"
+            android:alpha="0.1"
+            android:background="@color/c222222" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/mNestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topbar"
+            android:layout_marginTop="25dp">
+
+            <RelativeLayout
+                android:id="@+id/outlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/historylayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/history_str"
+                        android:textColor="@color/c444444"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:id="@+id/clearLayout"
+                        android:layout_width="50dp"
+                        android:layout_height="31dp"
+                        android:layout_alignParentRight="true">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@+id/clear_history"
+                            android:src="@mipmap/clear_icon" />
+
+                        <TextView
+                            android:id="@+id/clear_history"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/clear"
+                            android:textColor="@color/c888888"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/historyList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/clearLayout"
+                        android:background="@color/cffffff" />
+
+                    <TextView
+                        android:id="@+id/label_hot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/historyList"
+                        android:layout_marginTop="35dp"
+                        android:text="@string/hot_search_word"
+                        android:textColor="@color/c444444"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/hotSearchList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/label_hot"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/cffffff" />
+
+                    <FrameLayout
+                        android:id="@+id/search_banner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hotSearchList"
+                        android:layout_marginTop="25dp" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/searchSuggestList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cffffff"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/searchResultList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cffffff"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/searchResultList">
+
+                    <include layout="@layout/loading_more_view" />
+
+                    <include layout="@layout/no_more_view" />
+                </FrameLayout>
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/noDataView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/no_data_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:text="@string/no_search_data"
+            android:textColor="@color/c444444"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <cn.junechiu.junecore.widget.common.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        wheel:matProg_barColor="#F9D80D"
+        wheel:matProg_barWidth="3dp"
+        wheel:matProg_progressIndeterminate="true"
+        wheel:matProg_spinSpeed="1.2" />
+
+    <FrameLayout
+        android:id="@+id/search_banner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone" />
+
+</FrameLayout>

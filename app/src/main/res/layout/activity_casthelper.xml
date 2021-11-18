@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/casthelper_num1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/h_3dot"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_toEndOf="@id/casthelper_num1"
+            android:text="@string/cast_helper1"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/casthelper_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_tv1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/cast_helper_sample" />
+
+        <TextView
+            android:id="@+id/casthelper_num2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/casthelper_image"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/h_3dot"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_tv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_image"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@id/casthelper_num2"
+            android:text="@string/cast_helper2"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_tv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_tv2"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/casthelper_num2"
+            android:text="@string/cast_helper3"
+            android:textColor="@color/c333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_tv4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_tv3"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/casthelper_num2"
+            android:text="@string/cast_helper4"
+            android:textColor="@color/c333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_tv5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_tv4"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/casthelper_num2"
+            android:text="@string/cast_helper5"
+            android:textColor="@color/c333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_num3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/casthelper_tv5"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/h_3dot"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_tv6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_tv5"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/casthelper_num3"
+            android:text="@string/cast_helper6"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/casthelper_num4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/casthelper_tv6"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/h_3dot"
+            android:gravity="center"
+            android:text="4"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/casthelper_tv6"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="17dp"
+            android:layout_toEndOf="@id/casthelper_num4"
+            android:text="@string/cast_helper7"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

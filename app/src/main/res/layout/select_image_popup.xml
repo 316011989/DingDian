@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c4D000000"
+    android:layout_marginBottom="10dp">
+
+    <RelativeLayout
+        android:id="@+id/cancel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/c6_10round">
+
+        <TextView
+            android:id="@+id/select_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/cFCB230"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_team_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/cancel_layout"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/c6_10round">
+
+        <TextView
+            android:id="@+id/tv_from_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/select_album_str"
+            android:textColor="@color/c333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/line_one"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/tv_from_photo"
+            android:background="@color/cCCCCCC" />
+
+        <TextView
+            android:id="@+id/tv_from_photograph"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/line_one"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/take_picture"
+            android:textColor="@color/c333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/line_two"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_below="@id/tv_from_photograph"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/cCCCCCC"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

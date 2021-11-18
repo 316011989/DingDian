@@ -1,0 +1,232 @@
+<resources>
+    <string name="app_name">顶点视频</string>
+
+    <string name="home_first">首页</string>
+    <string name="home_channel">频道</string>
+    <string name="home_discover">发现</string>
+    <string name="home_mine">我的</string>
+    <string name="update_title">玉米电影有更新啦！</string>
+    <string name="update_ok_btn">体验新版</string>
+    <string name="set_name">修改昵称</string>
+    <string name="set_name_tip">请输入正确的名字</string>
+    <string name="set_info_tip">请输入简介</string>
+    <string name="set_info_limit_tip">简介不能超过60字</string>
+    <string name="version_new">已是最新版本</string>
+    <string name="feedback_tip">请输入反馈内容</string>
+    <string name="link_tip">请输入联系方式</string>
+
+    <string name="login">登录</string>
+    <string name="updateinapp">立即更新</string>
+    <string name="updateinbroser">官网下载</string>
+    <string name="phone_login">手机快捷登录</string>
+    <string name="click_login">点击登录</string>
+    <string name="register">注册</string>
+    <string name="phone">手机号</string>
+    <string name="passwd">密码</string>
+    <string name="input_phone">手机号码</string>
+    <string name="input_passwd">输入密码</string>
+    <string name="phone_exites">该手机号已经注册</string>
+    <string name="forget_passwd">忘记密码</string>
+    <string name="phone_code">验证码</string>
+    <string name="input_code">输入验证码</string>
+    <string name="input_code_">请输入验证码</string>
+    <string name="finish_register">完成注册</string>
+    <string name="finish_set">完成设置</string>
+    <string name="get_code">获取验证码</string>
+    <string name="passwd_set">设置密码</string>
+    <string name="set_success">设置成功</string>
+    <string name="passwd_tip">6～15位字母或数字组成</string>
+    <string name="get_phonecode_str">%1$d秒后重发</string>
+    <string name="getcode_again">重新获取</string>
+    <string name="not_phonenum">手机号码不正确</string>
+    <string name="course_downloaded">已下载课程</string>
+    <string name="open_vip">VIP开通</string>
+    <string name="vip_endtime">有效期至%s</string>
+    <string name="link_service">联系客服</string>
+    <string name="setting">设置</string>
+    <string name="profile">编辑资料</string>
+    <string name="change_head">头像</string>
+    <string name="nickname">昵称</string>
+    <string name="info">简介</string>
+    <string name="modify_passwd">修改密码</string>
+    <string name="quit_login">退出当前账号</string>
+    <string name="take_picture">拍照</string>
+    <string name="select_album_str">从相册选择</string>
+    <string name="complete_set">完成设置</string>
+    <string name="phone_number">手机号</string>
+    <string name="new_passwd">新密码</string>
+    <string name="duration">时长%s</string>
+    <string name="vip_end">有效期至%s</string>
+    <string name="follow">关注</string>
+    <string name="followed">已关注</string>
+    <string name="like">喜欢</string>
+    <string name="cache">缓存</string>
+    <string name="share">分享好友</string>
+    <string name="contactus">联系我们</string>
+    <string name="official_num">公众号</string>
+    <string name="hd">高清</string>
+    <string name="all">全部</string>
+    <string name="resource">来源</string>
+    <string name="recommend">推荐视频</string>
+    <string name="phone_code_send">验证码已发送</string>
+    <string name="watch_history">观看历史</string>
+    <string name="access_mobiledata_play">允许运营商网络自动播放／下载</string>
+    <string name="edit">编辑</string>
+    <string name="offline_cache">我的下载</string>
+    <string name="offline_caching">正在缓存</string>
+    <string name="look_cache">查看缓存</string>
+    <string name="mine_like">我喜欢的</string>
+    <string name="select_all">全选</string>
+    <string name="look_over">已看完</string>
+    <string name="no_look">未观看</string>
+    <string name="cancel_select_all">取消全选</string>
+    <string name="video_has_cached">该视频已下载，不能取消</string>
+    <string name="wifi_cache_video">当前为非wifi网络确定缓存本视频？</string>
+    <string name="sure_cahe">确认缓存</string>
+    <string name="cached">已缓存文件</string>
+    <string name="add_episodes">添加全部剧集</string>
+    <string name="select_cache">选择缓存的剧集</string>
+    <string name="delete_num">删除(%d)</string>
+    <string name="feedback">问题反馈</string>
+    <string name="submiterror">错误上报</string>
+    <string name="submit">提交</string>
+    <string name="input_phone_num">请输入手机号</string>
+    <string name="phone_error">手机号不正确</string>
+    <string name="default_intro">别做吃瓜群众，快点登录吧~</string>
+    <string name="filter_cate">下拉筛选%s</string>
+    <string name="disclaimer">免责声明</string>
+    <string name="share_subtitle">玉米电影－自家的影院</string>
+    <string name="pause_all">全部暂停</string>
+    <string name="start_all">全部开始</string>
+    <string name="clear_cache">清理缓存</string>
+    <string name="cache_info">缓存图片、缓存视频等相关内容</string>
+    <string name="share_app">推荐应用</string>
+    <string name="sure_clear">确定清空？</string>
+    <string name="standard_clear">标清</string>
+    <string name="tip">提示</string>
+    <string name="now_download">正在下载：%s</string>
+    <string name="download_success">%s下载完成</string>
+    <string name="tips">温馨提示</string>
+    <string name="unable_to_play">暂时无法播放</string>
+    <string name="unable_to_download">暂时无法下载</string>
+    <string name="play_time_start">00:00</string>
+    <string name="now_play">正在播放：%s</string>
+    <string name="can_use_space">可用空间</string>
+    <string name="from_text">来源：%s</string>
+    <string name="from_net">网络</string>
+    <string name="history_str">搜索记录</string>
+    <string name="clear">清空</string>
+    <string name="hot_search_word">全网热门搜索</string>
+    <string name="select_esp">选集</string>
+    <string name="play_error">异常错误，正在尽快修复</string>
+
+    <string name="delete">删除</string>
+    <string name="cancel">取消</string>
+    <string name="sure_delete">确定删除？</string>
+
+    <string name="setting_key_mobile_network_play">mobile_network_play</string>
+    <string name="setting_key_mobile_network_download">mobile_network_download</string>
+    <string name="setting_key_sound_effect">sound_effect</string>
+    <string name="setting_key_filter_size">filter_size</string>
+    <string name="setting_key_filter_time">filter_time</string>
+
+    <string name="unknown">未知</string>
+
+    <string name="notice">请选择连接设备，选择连接设备才可播放</string>
+    <string name="selectedText">已选中: %s</string>
+    <string name="progress">进度</string>
+    <string name="volume">音量</string>
+    <string name="mute">静音</string>
+    <string name="play">播放</string>
+    <string name="play_speed">多倍速播放</string>
+    <string name="playnow">立即播放</string>
+    <string name="pause">暂停</string>
+    <string name="stop">停止</string>
+    <string name="pending">等待下载</string>
+    <string name="down_exception">下载异常，点击重试</string>
+    <string name="no_space">存储空间不足</string>
+    <string name="prepare">准备中</string>
+    <string name="no_down">未下载</string>
+    <string name="down_finish">下载完成</string>
+    <string name="down_pause">已暂停</string>
+    <string name="click_download">点击下载</string>
+    <string name="downloading">正在下载:&#160;&#160;</string>
+    <string name="add_cache">已成功添加至缓存列表并开始缓存</string>
+    <string name="loading_text">正在加载中...</string>
+
+    <string name="no_movie_data">
+        木有找到~\n换个筛选条件吧
+    </string>
+
+    <string name="no_data">
+        空空如也
+    </string>
+    <string name="no_cache">您还没有缓存视频</string>
+    <string name="no_cache_tip">在详情页可以点击下载缓存按钮进行缓存</string>
+
+    <string name="no_search_data">
+        搜索不到您要的结果，换个关键词试试哦~
+    </string>
+
+    <string name="disclaimer_text">
+        1.玉米电影APP不提供任何视听上传服务，所有内容均来自影视分享站点所提供的公开引用资源，所有视频及图文版权均归原作者及其网站所有。最大视频APP不存储，不修改界面内容。视频数据流也不经由本公司服务器中转或存储。本站将竭尽所能注明资源来源，但由于互联网转载的不可预性，无法确认所有内容的版权所有人。若原作者对本站所载视频作品版权的归属存有异议，请联系QQ:2165054326，我们将在第一时间予以删除。
+        \n\n
+        2.任何存在于玉米电影APP上的视频、图文资料均系他人制作或提供，仅为个人观点，不代表最大视频APP网站立场。您可能从这些视频、图文资料上获得资讯，最大视频APP对其合法性概不负责，亦不承担任何法律责任。
+        \n\n
+        3.玉米电影APP对网络视频的聚合和分类，是根据用户观看习惯做的浏览引导，这样可以方便用户更快捷的找到相应的视频，本软件并没有对电视频道做编辑和整理。
+        \n\n
+        4.您应该对浏览使玉米电影APP一切服务自行承担风险。我们不做任何形式的保证：不保证站内搜索结果满足您的要求，不保证网站服务不中断，不保证视频及图文资源的安全性、正确性、及时性、合法性。因网络状况、通讯线路、第三方网站等任何原因而导致您不能正常使用最大视频APP，最大视频APP不承担任何法律责任。
+        \n\n
+        5.玉米电影APP尊重并保护所有使用玉米电影APP用户的个人隐私权，您注册的用户名、电子邮件地址等个人资料，非经您亲自许可或根据相关法律、法规的强制性规定，最大视频APP不会主动地泄露给第三方。
+        \n\n
+        6.任何单位或个人认为通过玉米电影APP提供的内容可能涉嫌侵犯其信息网络传播权，应该及时向最大视频APP提出书面权利通知，并提供身份证明、权属证明及详细侵权情况证明。最大视频APP在收到上述法律文件后，将会依法尽快断开相关链接内容。
+        \n\n
+        7.玉米电影APP一切资源仅为学习交流娱乐所用，请在下载后24小时内删除，未经版权许可，任何单位或个人不得将本站内容或服务用于商业目的。
+    </string>
+
+    <string name="no_url">播放地址无效</string>
+    <string name="replay">重播</string>
+    <string name="click_to_restart">点击重试</string>
+    <string name="submiterrot">故障上报</string>
+    <string name="video_loading_faild">视频加载失败</string>
+    <string name="net_error">网络已断开，请检查网络连接</string>
+    <string name="mobile_play_tip">正在使用非WIFI网络，播放将产生流量费用</string>
+    <string name="mobile_play">流量播放</string>
+    <string name="video_adding">大院正在努力搬运中</string>
+    <string name="video_play_error">视频无法播放</string>
+    <string name="video_not_exist">视频不存在</string>
+    <string name="double_clarity">清晰度</string>
+    <string name="play_clarity">清晰度</string>
+    <string name="double_speed">倍速</string>
+    <string name="double_speed_2">倍数播放</string>
+    <string name="picture_ratio">画面比例</string>
+    <string name="high_v">高清</string>
+    <string name="esp_text">剧集</string>
+    <string name="commend_tv1">扫描上边二维码，下载玉米电影</string>
+    <string name="commend_tv2">官网：dingdian.vip</string>
+    <string name="commend_tv3">保存二维码到手机，如遇APP无法打开扫描二维码或打开官网重新下载即可</string>
+
+    <string name="ad">广告</string>
+    <string name="official">公众号：yingmi2019</string>
+    <string name="website">官方网站：dingdian.vip</string>
+    <string name="qq">QQ群：1009227337</string>
+
+    <string name="choicecastdevice">选择投屏设备</string>
+    <string name="searchingcastdevice">正在搜索投屏设备…</string>
+    <string name="casthelper">投屏助手</string>
+    <string name="cast_helper1">首先，确保手机与电视连接在同一个路由器网络。然后刷新重新搜索设备。</string>
+    <string name="cast_helper2">如果搜索不到设备：</string>
+    <string name="cast_helper3">A.手机重新连接Wi-Fi或者重启手机</string>
+    <string name="cast_helper4">B.重新启动电视或者电视盒子</string>
+    <string name="cast_helper5">C.电视或者电视盒子安装乐播投屏软件</string>
+    <string name="cast_helper6">播放有声音无画面或者有画面无声音，请安装乐播投屏软件。</string>
+    <string name="cast_helper7">如果以上操作还不能解决问题，请把电视或者电视盒子型号反馈给我们。</string>
+
+
+    <string name="no_connectivity">No connectivity</string>
+    <string name="no_text">Please enter an ip or URL</string>
+    <string name="no_ping">Are you sure about the URL?</string>
+    <string name="string_test">test</string>
+    <string name="error">An error occurred, please try again</string>
+    <string name="timeout">Timeout</string>
+</resources>

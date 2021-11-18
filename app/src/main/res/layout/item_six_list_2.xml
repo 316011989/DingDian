@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/item_six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+    <ImageView
+            android:id="@+id/movie_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/default_cover"
+            android:scaleType="centerCrop"/>
+
+    <TextView
+            android:id="@+id/movie_update"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:background="@drawable/ikicker_gradient_90_66_00"
+            android:layout_alignBottom="@id/movie_cover"
+            android:layout_alignLeft="@id/movie_cover"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/cffffff"
+            android:textSize="10sp"/>
+
+    <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/movie_cover"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLength="9"
+            android:maxLines="1"
+            android:textColor="@color/c444444"
+            android:textSize="13sp"/>
+</RelativeLayout>
