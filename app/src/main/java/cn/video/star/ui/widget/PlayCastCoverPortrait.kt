@@ -71,8 +71,8 @@ class PlayCastCoverPortrait(context: Context, index: Int) : BaseCover(context),
 
         rootLay.setOnTouchListener { _: View?, _: MotionEvent? -> true }
         //连接投屏设备
-        LeCast.getInstance().connect(LeCast.getInstance().infos[index])
         listenCast()
+        LeCast.getInstance().connect(LeCast.getInstance().infos[index])
     }
 
     override fun onClick(view: View) {

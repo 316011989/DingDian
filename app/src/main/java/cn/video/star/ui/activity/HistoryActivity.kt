@@ -94,7 +94,7 @@ class HistoryActivity : BaseActivity() {
             line2.visibility = View.VISIBLE
             toolbar_right_title2.text = getString(R.string.cancel)
             selectLay.visibility = View.VISIBLE
-            var layoutParams = recyclerView.layoutParams as RelativeLayout.LayoutParams
+            val layoutParams = recyclerView.layoutParams as RelativeLayout.LayoutParams
             layoutParams.setMargins(
                 ScreenUtil.dp2px(10f),
                 0,
@@ -105,7 +105,7 @@ class HistoryActivity : BaseActivity() {
             line2.visibility = View.GONE
             toolbar_right_title2.text = getString(R.string.edit)
             selectLay.visibility = View.GONE
-            var layoutParams = recyclerView.layoutParams as RelativeLayout.LayoutParams
+            val layoutParams = recyclerView.layoutParams as RelativeLayout.LayoutParams
             layoutParams.setMargins(ScreenUtil.dp2px(10f), 0, ScreenUtil.dp2px(10f), 0)
         }
     }

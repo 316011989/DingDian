@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('lecast-40023.aar'))
+artifacts.add("default", file('lecast-40503.aar'))
