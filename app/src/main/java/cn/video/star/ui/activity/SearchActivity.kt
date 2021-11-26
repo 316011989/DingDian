@@ -291,7 +291,7 @@ class SearchActivity : BaseActivity() {
             DataRepository.instance.keywordCount(keyWord)
             AppDatabaseManager.dbManager.querySearchWordsByWord(keyWord) { list ->
                 if (list == null || list.size <= 0) {
-                    AppDatabaseManager.dbManager.insertWord(word)
+                    AppDatabaseManager.dbManager.insertSearchWord(word)
                     updateHisData()
                 }
             }

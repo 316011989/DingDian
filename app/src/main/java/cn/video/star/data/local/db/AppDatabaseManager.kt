@@ -38,219 +38,119 @@ class AppDatabaseManager {
     }
 
     fun insertVideoType(json: String) {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    val entity = VideoTypeEntity(0, json)
-                    database?.videoType()?.insertVideoType(entity)
-                }
-                return null
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                val entity = VideoTypeEntity(0, json)
+                database?.videoType()?.insertVideoType(entity)
             }
-        }.execute()
+        }
     }
 
     fun loadVideoType(callback: (VideoTypeEntity?) -> Unit) {
-        object : AsyncTask<Void, Void, VideoTypeEntity>() {
-            override fun doInBackground(vararg voids: Void): VideoTypeEntity? {
-                var videType: VideoTypeEntity? = null
-                database?.runInTransaction {
-                    videType = database?.videoType()?.queryVideoType()
-                }
-                return videType
+        MainScope().launch {
+            val videType = withContext(Dispatchers.IO) {
+                database?.videoType()?.queryVideoType()
             }
-
-            override fun onPostExecute(result: VideoTypeEntity?) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-        }.execute()
+            callback(videType)
+        }
     }
 
 
-    fun insertWord(wordEntity: SearchWordEntity) {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.searchWordDao()?.insertWord(wordEntity)
-                }
-                return null
+    fun insertSearchWord(wordEntity: SearchWordEntity) {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                database?.searchWordDao()?.insertSearchWord(wordEntity)
             }
-        }.execute()
+        }
     }
 
     fun querySearchWords(callback: (MutableList<SearchWordEntity>?) -> Unit) {
-        object : AsyncTask<Void, Void, MutableList<SearchWordEntity>>() {
-            override fun doInBackground(vararg voids: Void): MutableList<SearchWordEntity>? {
-                var words: MutableList<SearchWordEntity>? = mutableListOf()
-                database?.runInTransaction {
-                    words = database?.searchWordDao()?.queryWords()!!
-                }
-                return words
+        MainScope().launch {
+            val words = withContext(Dispatchers.IO) {
+                database?.searchWordDao()?.queryWords()
             }
-
-            override fun onPostExecute(result: MutableList<SearchWordEntity>?) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-        }.execute()
+            callback(words)
+        }
     }
 
-    fun querySearchWordsByWord(word: String, callback: (MutableList<SearchWordEntity>?) -> Unit) {
-        object : AsyncTask<Void, Void, MutableList<SearchWordEntity>>() {
-            override fun doInBackground(vararg voids: Void): MutableList<SearchWordEntity>? {
-                var words: MutableList<SearchWordEntity>? = mutableListOf()
-                database?.runInTransaction {
-                    words = database?.searchWordDao()?.queryWordsByWord(word)!!
-                }
-                return words
+    fun querySearchWordsByWord(
+        word: String,
+        callback: (MutableList<SearchWordEntity>?) -> Unit
+    ) {
+        MainScope().launch {
+            val words = withContext(Dispatchers.IO) {
+                database?.searchWordDao()?.queryWordsByWord(word)
             }
-
-            override fun onPostExecute(result: MutableList<SearchWordEntity>?) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-        }.execute()
+            callback(words)
+        }
     }
 
     fun deleteAllWords() {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.searchWordDao()?.deleteAll()
-                }
-                return null
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                database?.searchWordDao()?.deleteAll()
             }
-        }.execute()
+        }
     }
 
     fun getWordCount(callback: (Int) -> Unit) {
-        object : AsyncTask<Void, Void, Int>() {
-            override fun doInBackground(vararg voids: Void): Int? {
-                var count = 0
-                database?.runInTransaction {
-                    count = database?.searchWordDao()?.count!!
-                }
-                return count
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.searchWordDao()?.count
             }
-
-            override fun onPostExecute(result: Int) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-        }.execute()
+            callback(count ?: 0)
+        }
     }
 
     /**
      * 插入观看历史
      */
-    fun insertMovie(movieEntity: MovieHistoryEntity) {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.movieHistoryDao()?.insertMovie(movieEntity)
-                }
-                return null
+    fun insertHistoryMovie(movieEntity: MovieHistoryEntity) {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                database?.movieHistoryDao()?.insertHistoryMovie(movieEntity)
             }
-        }.execute()
+        }
     }
 
     /**
      * 查询观看历史
      */
-    fun queryMovies(callback: (MutableList<MovieHistoryEntity>?) -> Unit) {
-        object : AsyncTask<Void, Void, MutableList<MovieHistoryEntity>>() {
-            override fun doInBackground(vararg voids: Void): MutableList<MovieHistoryEntity>? {
-                var movies: MutableList<MovieHistoryEntity>? = mutableListOf()
-                database?.runInTransaction {
-                    movies = database?.movieHistoryDao()?.queryMovies()!!
-                }
-                return movies
+    fun queryHistoryMovies(callback: (MutableList<MovieHistoryEntity>?) -> Unit) {
+        MainScope().launch {
+            val movies = withContext(Dispatchers.IO) {
+                database?.movieHistoryDao()?.queryHistoryMovies()
             }
-
-            override fun onPostExecute(result: MutableList<MovieHistoryEntity>?) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-        }.execute()
+            callback(movies)
+        }
     }
 
-    fun deleteAllMovies() {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.movieHistoryDao()?.deleteAll()
-                }
-                return null
+    fun deleteHistoryMovies(movieIds: MutableList<Long>) {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                database?.movieHistoryDao()?.deleteHistoryMovies(movieIds)
             }
-        }.execute()
+        }
     }
 
-    fun deleteMovies(movieIds: MutableList<Long>) {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.movieHistoryDao()?.deleteArray(movieIds)
-                }
-                return null
+    fun deleteHistoryMovie(movie: MovieHistoryEntity) {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
+                database?.movieHistoryDao()?.deleteHistoryMovie(movie)
             }
-        }.execute()
+        }
     }
 
-    fun deleteMovie(movie: MovieHistoryEntity) {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.movieHistoryDao()?.delete(movie)
-                }
-                return null
+    fun queryHistoryMovieById(
+        movieId: Long,
+        callback: (MovieHistoryEntity?) -> Unit
+    ) {
+        MainScope().launch {
+            val movie = withContext(Dispatchers.IO) {
+                database?.movieHistoryDao()?.getMovieById(movieId)
             }
-        }.execute()
-    }
-
-    fun queryHistoryMovieById(movieId: Long, callback: (MovieHistoryEntity?) -> Unit) {
-        object : AsyncTask<Void, Void, MovieHistoryEntity>() {
-            override fun doInBackground(vararg voids: Void): MovieHistoryEntity? {
-                var movie: MovieHistoryEntity? = null
-                database?.runInTransaction {
-                    movie = database?.movieHistoryDao()?.getMovieById(movieId)
-                }
-                return movie
-            }
-
-            override fun onPostExecute(result: MovieHistoryEntity?) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-
-        }.execute()
-    }
-
-    fun getMovieCount(callback: (Int?) -> Unit) {
-        object : AsyncTask<Void, Void, Int>() {
-            override fun doInBackground(vararg voids: Void): Int? {
-                var count = 0
-                database?.runInTransaction {
-                    count = database?.movieHistoryDao()?.count!!
-                }
-                return count
-            }
-
-            override fun onPostExecute(result: Int?) {
-                super.onPostExecute(result)
-                callback(result)
-            }
-        }.execute()
-    }
-
-    fun updateMovie(movieEntity: MovieHistoryEntity) {
-        object : AsyncTask<Void, Void, Void>() {
-            override fun doInBackground(vararg voids: Void): Void? {
-                database?.runInTransaction {
-                    database?.movieHistoryDao()?.update(movieEntity)
-                }
-                return null
-            }
-        }.execute()
+            callback(movie)
+        }
     }
 
 
@@ -261,11 +161,11 @@ class AppDatabaseManager {
      * 没有observer和callback,不处理插入数据库的结果
      */
     fun insertDownloadEpisode(entity: DownloadEpisodeEntity) {
-        StaticTask {
-            database?.runInTransaction {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
                 database?.downloadEpisodeDao()?.insertEpisode(entity)
             }
-        }.execute()
+        }
     }
 
     /**
@@ -274,37 +174,34 @@ class AppDatabaseManager {
      */
     fun updateEpisodeDownloadStatus(
         episodeId: Long, state: Int, speed: Long,
-        successTsCount: Long, totalTsCount: Long, callback: (Int) -> Unit
+        successTsCount: Long, totalTsCount: Long, callback: (Int) -> Unit,
     ) {
-        StaticTask {
-            database?.runInTransaction {
-                //update数据库成功数量,暂时没有回调需要
-                val count = database?.downloadEpisodeDao()
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()
                     ?.updateEpisodeDownloadStatus(
                         episodeId, state, speed,
                         successTsCount, totalTsCount
                     )
-                callback(count ?: 0)
             }
-        }.execute()
+            callback(count ?: 0)
+        }
     }
 
     /**
      * 删除指定某集
      */
     fun deleteEpisodeById(episodeId: Long, callback: (Int) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                database?.runInTransaction {
-                    val count = database?.downloadEpisodeDao()?.deleteEpisodeById(episodeId)
-                    callback(count ?: 0)
-                }
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()?.deleteEpisodeById(episodeId)
             }
-        }.execute()
+            callback(count ?: 0)
+        }
     }
 
     /**
-     * 删除所有缓存记录
+     * 删除所有下载记录
      */
     fun deleteAllEpisode() {
         MainScope().launch {
@@ -314,33 +211,32 @@ class AppDatabaseManager {
         }
     }
 
-
     /**
      * 查询所有某剧下集
      */
     fun queryAllEpisodesBySeriesId(
         seriesId: Long?,
-        callback: (movieList: MutableList<DownloadEpisodeEntity>?) -> Unit
+        callback: (movieList: MutableList<DownloadEpisodeEntity>?) -> Unit,
     ) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(
-                    database?.downloadEpisodeDao()
-                        ?.queryAllDownloadedEpisodes(seriesId = seriesId ?: 0)!!
-                )
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()
+                    ?.queryAllDownloadedEpisodes(seriesId = seriesId ?: 0)!!
             }
-        }.execute()
+            callback(count)
+        }
     }
 
     /**
      * 设置所有下载中任务为暂停状态
      */
     fun setDownloading2Pause(callback: (Int?) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(database?.downloadEpisodeDao()?.updateEpisodeDownloadPause())
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()?.updateEpisodeDownloadPause()
             }
-        }.execute()
+            callback(count)
+        }
     }
 
     /**
@@ -348,10 +244,10 @@ class AppDatabaseManager {
      * 取所有已经完成集,通过seriesid去重得到所有已完成的剧
      */
     fun queryEpisodeGroupbySeriesid(callback: (movieList: MutableList<DownloadEpisodeEntity>?) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                //可能会有  最多一个下载中的剧,多个已完成的剧
-                val list = mutableListOf<DownloadEpisodeEntity>()
+        MainScope().launch {
+            //可能会有  最多一个下载中的剧,多个已完成的剧
+            val list = mutableListOf<DownloadEpisodeEntity>()
+            withContext(Dispatchers.IO) {
                 //未完成所有集
                 val downloadingList =
                     database?.downloadEpisodeDao()?.queryNotFinishedEpisode()
@@ -373,9 +269,9 @@ class AppDatabaseManager {
                     }
                 }
                 list.addAll(downloadedList!!)
-                callback(list)
             }
-        }.execute()
+            callback(list)
+        }
     }
 
 
@@ -384,16 +280,15 @@ class AppDatabaseManager {
      */
     fun queryDownloadedEpisodeBySeriesid(
         seriesId: Long,
-        callback: (movieList: MutableList<DownloadEpisodeEntity>?) -> Unit
+        callback: (movieList: MutableList<DownloadEpisodeEntity>?) -> Unit,
     ) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(
-                    database?.downloadEpisodeDao()
-                        ?.queryDownloadedEpisodeBySeriesid(seriesId)!!
-                )
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()
+                    ?.queryDownloadedEpisodeBySeriesid(seriesId)!!
             }
-        }.execute()
+            callback(count)
+        }
     }
 
 
@@ -401,27 +296,25 @@ class AppDatabaseManager {
      * 检索所有未完成的集
      */
     fun queryNotFinishedEpisode(callback: (movieList: MutableList<DownloadEpisodeEntity>?) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(
-                    database?.downloadEpisodeDao()?.queryNotFinishedEpisode()
-                )
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()?.queryNotFinishedEpisode()
             }
-        }.execute()
+            callback(count)
+        }
     }
 
     /**
      * 查询 集
      */
-    fun queryEpisodeById(episodeId: Long,callback: (movie: DownloadEpisodeEntity?) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(
-                    database?.downloadEpisodeDao()
-                        ?.queryEpisodeByEpisodeId(episodeId)
-                )
+    fun queryEpisodeById(episodeId: Long, callback: (movie: DownloadEpisodeEntity?) -> Unit) {
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.downloadEpisodeDao()
+                    ?.queryEpisodeByEpisodeId(episodeId)
             }
-        }.execute()
+            callback(count)
+        }
     }
 
 
@@ -429,13 +322,12 @@ class AppDatabaseManager {
      * 查询所有收藏
      */
     fun queryAllCollect(callback: (movieList: MutableList<CollectEntity>?) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(
-                    database?.collectDao()?.queryCollects()
-                )
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.collectDao()?.queryCollects()
             }
-        }.execute()
+            callback(count)
+        }
     }
 
     /**
@@ -443,48 +335,37 @@ class AppDatabaseManager {
      */
     fun queryCollectByMovieId(
         movieId: Long,
-        callback: (movieList: MutableList<CollectEntity>?) -> Unit
+        callback: (movieList: MutableList<CollectEntity>?) -> Unit,
     ) {
-        StaticTask {
-            database?.runInTransaction {
-                callback(
-                    database?.collectDao()?.queryCollectByMovieId(movieId)
-                )
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.collectDao()?.queryCollectByMovieId(movieId)
             }
-        }.execute()
+            callback(count)
+        }
     }
 
     /**
      * 添加收藏
      */
     fun insertCollect(entity: CollectEntity) {
-        StaticTask {
-            database?.runInTransaction {
+        MainScope().launch {
+            withContext(Dispatchers.IO) {
                 database?.collectDao()?.insertCollect(entity)
             }
-        }.execute()
+        }
     }
 
     /**
      * 取消收藏
      */
     fun deleteCollectByMovieId(movieId: Long, callback: (Int) -> Unit) {
-        StaticTask {
-            database?.runInTransaction {
-                val count = database?.collectDao()?.deleteById(movieId)
-                callback(count ?: 0)
+        MainScope().launch {
+            val count = withContext(Dispatchers.IO) {
+                database?.collectDao()?.deleteById(movieId)
             }
-        }.execute()
-    }
-
-    /**
-     * 防止出现warning
-     * This AsyncTask class should be static or leaks might occur
-     */
-    private class StaticTask(val run: () -> Unit) : AsyncTask<Void, Void, String>() {
-        override fun doInBackground(vararg params: Void?): String {
-            run()
-            return ""
+            callback(count ?: 0)
         }
     }
+
 }

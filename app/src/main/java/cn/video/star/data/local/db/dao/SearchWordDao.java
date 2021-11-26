@@ -9,7 +9,7 @@ import java.util.List;
 public interface SearchWordDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertWord(SearchWordEntity wordEntity);
+    void insertSearchWord(SearchWordEntity wordEntity);
 
     @Query("SELECT * FROM search_word ORDER BY id DESC")
     List<SearchWordEntity> queryWords();

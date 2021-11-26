@@ -83,7 +83,7 @@ class HistoryActivity : BaseActivity() {
     }
 
     private fun queryHistory() {
-        AppDatabaseManager.dbManager.queryMovies {
+        AppDatabaseManager.dbManager.queryHistoryMovies {
             if (it != null)
                 getHistory(it)
         }
@@ -169,7 +169,7 @@ class HistoryActivity : BaseActivity() {
 
     private fun deleteAll(deleteList: MutableList<Long>) {
         Observable.create(ObservableOnSubscribe<String> { e ->
-            AppDatabaseManager.dbManager.deleteMovies(deleteList)
+            AppDatabaseManager.dbManager.deleteHistoryMovies(deleteList)
             e.onNext("ok")
         }).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -185,7 +185,7 @@ class HistoryActivity : BaseActivity() {
         try {
             AppDatabaseManager.dbManager.queryHistoryMovieById(item.movidId) {
                 if (it != null) {
-                    AppDatabaseManager.dbManager.deleteMovie(it)
+                    AppDatabaseManager.dbManager.deleteHistoryMovie(it)
                     ALogger.d("deleteItem", "movie:" + it.name)
                 }
             }

@@ -96,7 +96,7 @@ class MineFragment : Fragment(), View.OnClickListener {
     }
 
     private fun getHistoryData() {
-        AppDatabaseManager.dbManager.queryMovies { list ->
+        AppDatabaseManager.dbManager.queryHistoryMovies { list ->
             if (list != null)
                 adapter!!.addHistoryData(list)
         }

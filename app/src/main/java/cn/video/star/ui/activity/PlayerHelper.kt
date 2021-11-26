@@ -6,7 +6,6 @@ import cn.video.star.base.Api
 import cn.video.star.base.App
 import cn.video.star.data.local.db.AppDatabaseManager
 import cn.video.star.data.local.db.entity.CollectEntity
-import cn.video.star.data.local.db.entity.DownloadEpisodeEntity
 import cn.video.star.data.local.db.entity.MovieHistoryEntity
 import cn.video.star.data.remote.model.ClarityModel
 import cn.video.star.data.remote.model.ClarityRuleModel
@@ -17,7 +16,6 @@ import cn.video.star.download.DownloadFeature
 import cn.video.star.download.DownloadFileUtil
 import cn.video.star.utils.ConfigCenter
 import com.blankj.utilcode.util.TimeUtils
-import com.kk.taurus.playerbase.lebo.LeCast
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -304,7 +302,7 @@ class PlayerHelper(private val videoData: VideoData) {
                 }
                 movie.position = playPosition
                 movie.percent = playPercent //获取播放进度百分比
-                AppDatabaseManager.dbManager.insertMovie(movie)
+                AppDatabaseManager.dbManager.insertHistoryMovie(movie)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

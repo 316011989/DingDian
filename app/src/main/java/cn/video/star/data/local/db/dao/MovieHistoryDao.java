@@ -9,16 +9,16 @@ import java.util.List;
 public interface MovieHistoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertMovie(MovieHistoryEntity movieHistoryEntity);
+    void insertHistoryMovie(MovieHistoryEntity movieHistoryEntity);
 
     @Query("SELECT * FROM movie_history ORDER BY id DESC")
-    List<MovieHistoryEntity> queryMovies();
+    List<MovieHistoryEntity> queryHistoryMovies();
 
     @Query("SELECT * FROM movie_history WHERE movidId = :movidId")
     MovieHistoryEntity getMovieById(Long movidId);
 
     @Delete
-    void delete(MovieHistoryEntity movie);
+    void deleteHistoryMovie(MovieHistoryEntity movie);
 
     @Update()
     void update(MovieHistoryEntity movie);
@@ -27,7 +27,7 @@ public interface MovieHistoryDao {
     void deleteAll();
 
     @Query("DELETE FROM movie_history WHERE movidId IN (:list)")
-    void deleteArray(List<Long> list);
+    void deleteHistoryMovies(List<Long> list);
 
     @Query("SELECT COUNT(*) FROM movie_history")
     int getCount();
