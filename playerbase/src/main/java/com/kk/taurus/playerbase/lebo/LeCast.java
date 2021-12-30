@@ -26,8 +26,8 @@ import java.util.List;
 public class LeCast {
 
     private static final String TAG = "LeCast";
-    private static final String APPKEY = "15694";
-    private static final String APPSECRET = "ae45d4bc6e13bf8a53dede5b332f2708";
+    private static final String APPKEY = "11833";
+    private static final String APPSECRET = "8c5ad9def1e9bc26b1f7cf49b7916274";
     private boolean isMirror;
 
     private Context mContext;
