@@ -14,9 +14,7 @@ interface IDataSource {
     //查询影视数据分类videoType
     fun getVideoType(): MutableLiveData<VideoType?>
 
-    fun isLoadingRecommendData(): LiveData<Boolean>?
-
-    fun getRecommendData(page: Int, size: Int): LiveData<HomeTopic>?
+    fun getRecommendData(page: Int, size: Int):  MutableLiveData<HomeTopic?>
 
     fun topicHomeBanner(): MutableLiveData<HomeBanner?>
 

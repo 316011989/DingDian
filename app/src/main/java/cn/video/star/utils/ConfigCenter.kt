@@ -22,7 +22,7 @@ class ConfigCenter(val context: Context) {
     }
 
 
-    fun readConfig( callback: () -> Unit) {
+    fun readConfig(callback: () -> Unit) {
         val file = File(context.cacheDir?.path + "/configFile")
         //网络请求配置中心内容不为空
         val str: String = FileUtil.getAssetsFile("config")
@@ -32,8 +32,6 @@ class ConfigCenter(val context: Context) {
             file.createNewFile()
         file.writeText(str)
 
-
-//        val str: String = isstr ?: FileUtil.getAssetsFile("config")
         Log.d("configCenter readConfig", str)
         configurator = Gson().fromJson(str, Configuration::class.java)
         //配置中心替换本地清晰度规则
@@ -70,18 +68,15 @@ class ConfigCenter(val context: Context) {
     }
 
 
-
-
     /**
      * //配置中心替换本地清晰度规则
      */
     private fun parseClarity() {
         if (configurator != null && configurator?.configurations != null && configurator?.configurations?.resolutionRule != null) {
-            val cm = EncreptUtil.decrypt(
+            val clarityRule = Gson().fromJson(
                 configurator?.configurations?.resolution,
-                EncreptUtil.ENCREPT_PW
+                ClarityModel::class.java
             )
-            val clarityRule = Gson().fromJson(cm, ClarityModel::class.java)
             if (clarityRule.rate != null && clarityRule.rate.size > 0) {
                 clarityRule.rate.forEach { clarity ->
                     mapClarity[clarity.id] = clarity
@@ -95,24 +90,19 @@ class ConfigCenter(val context: Context) {
      * 广告信息解析
      */
     private fun parseADs() {
-        splashRule = Gson().fromJson(
-            configurator?.configurations?.splashRule,
-            SplashRule::class.java
-        )
+        val splashRuleStr = configurator?.configurations?.splashRule
+        splashRule = Gson().fromJson(splashRuleStr, SplashRule::class.java)
     }
-
 
 
     /**
      * 清晰度规则(时间段,视频类型)
      */
     private fun parseClarityRuleModel() {
-        val crString =
-            EncreptUtil.decrypt(
-                configurator?.configurations?.resolutionRule,
-                EncreptUtil.ENCREPT_PW
-            )
-        clarityRuleModel = Gson().fromJson(crString, ClarityRuleModel::class.java)
+        clarityRuleModel = Gson().fromJson(
+            configurator?.configurations?.resolutionRule,
+            ClarityRuleModel::class.java
+        )
     }
 
 }

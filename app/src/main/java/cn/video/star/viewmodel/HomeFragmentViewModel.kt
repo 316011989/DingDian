@@ -54,12 +54,6 @@ class HomeFragmentViewModel(application: Application) : AndroidViewModel(applica
         if (feedIndex.value == null) feedIndex.value = 1 else feedIndex.value = feedIndex.value!! + 1
     }
 
-    //获取加载数据状态
-    fun getLoadMoreState(): LiveData<Boolean>? {
-        return DataRepository.instance.isLoadingRecommendData()
-    }
-
-
     class Factory(private val mApplication: Application) :
         ViewModelProvider.NewInstanceFactory() {
 

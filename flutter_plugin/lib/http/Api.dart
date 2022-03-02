@@ -6,11 +6,8 @@ class Api {
   static String appVersion = '';
   static var configUrl = "http://config.19051024.com/"; //配置中心域名
   static var propath =
-      "openapi/v1/envs/DEV/apps/cn.video.giant/clusters/ym_base_zuida/namespaces/application/releases/latest";
-  static var prottkoen = "dd0b13ab9372d5c0ec398822edf2d172e7f9df88";
-  static var testpath =
-      "openapi/v1/envs/DEV/apps/cn.video.giant/clusters/test/namespaces/application/releases/latest";
-  static var testttkoen = "dd0b13ab9372d5c0ec398822edf2d172e7f9df88";
+      "openapi/v1/envs/DEV/apps/moviefans/clusters/yumi430/namespaces/application/releases/latest";
+  static var prottkoen = "88281a86f82626940a6a8ce9ff3591684a83786a";
 
   static var toolHost = "http://play.qinwangtao.com";//工具服务器host
   static var playUrl = toolHost + "/parse/zdjx/playurl";//解析播放链接

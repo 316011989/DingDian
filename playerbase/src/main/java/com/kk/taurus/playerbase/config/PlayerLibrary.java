@@ -17,8 +17,8 @@
 package com.kk.taurus.playerbase.config;
 
 import android.app.Application;
+
 import com.kk.taurus.playerbase.lebo.LeCast;
-import com.kk.taurus.playerbase.player.VideoDownload;
 import com.kk.taurus.playerbase.utils.VideoUtil;
 
 public class PlayerLibrary {
@@ -30,6 +30,5 @@ public class PlayerLibrary {
         AppContextAttach.attach(application);
         LeCast.getInstance().initLeCast(application);
         VideoUtil.init(application);
-        VideoDownload.getInstance().initDownload(application);
     }
 }

@@ -384,3 +384,6 @@ public static final int *;
 -keep class tv.danmaku.ijk.media.player.** {*;}
 -keep class tv.danmaku.ijk.media.player.IjkMediaPlayer{*;}
 -keep class tv.danmaku.ijk.media.player.ffmpeg.FFmpegApi{*;}
+#playerBase
+-keep public class * extends android.view.View{*;}
+-keep public class * implements com.kk.taurus.playerbase.player.IPlayer{*;}

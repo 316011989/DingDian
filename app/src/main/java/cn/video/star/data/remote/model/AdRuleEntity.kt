@@ -14,8 +14,3 @@ class SplashRule(
     var splashCountsLimit: Int = 20//总共显示次数
 ) : Serializable
 
-/**
- * 穿山甲
- */
-class Union(
-) : Serializable

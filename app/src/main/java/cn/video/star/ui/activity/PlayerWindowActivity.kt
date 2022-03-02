@@ -320,16 +320,16 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
         progressView.visibility = View.VISIBLE
         val factory = PlayerViewModel.Factory(id, App.INSTANCE)
         model = ViewModelProviders.of(this, factory).get(PlayerViewModel::class.java)
-        model?.getVideoDetail()?.observe(this, { videoDetail ->
-            model?.getVideoSourcePlays()?.observe(this, { videoSources ->
+        model?.getVideoDetail()?.observe(this) { videoDetail ->
+            model?.getVideoSourcePlays()?.observe(this) { videoSources ->
                 setDetailData(videoDetail.data)
-                setSourcesData(videoSources.data)
+                setSourcesData(videoSources?.data)
                 progressView.visibility = View.GONE
-            })
-        })
-        model?.getVideoSuggest()?.observe(this, { videoSuggest ->
+            }
+        }
+        model?.getVideoSuggest()?.observe(this) { videoSuggest ->
             setVideoSuggest(videoSuggest.data)
-        })
+        }
     }
 
     fun checkOrientation() {
@@ -368,8 +368,8 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
     /**
      * 播放源,每个源对应可选集
      */
-    private fun setSourcesData(sourcesData: List<VideoSources>) {
-        if (sourcesData.isNotEmpty()) {
+    private fun setSourcesData(sourcesData: List<VideoSources>?) {
+        if (sourcesData != null && sourcesData.isNotEmpty()) {
             //指定播放源(指定的源的名称,转换为源的下标)
             if (intent.hasExtra("src")) {
                 sourcesData.forEachIndexed { index, videoSources ->
@@ -385,10 +385,10 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
             //目标videoplay不存在,设置默认的videoplay
             if (videoPlay == null) videoPlay = sourcesData[0].plays[0]
             playerHelper = PlayerHelper(videoData!!)
-            playerUI?.setVideoSources(sourcesData)
-            dataSource?.espList?.addAll(videoData!!.plays!!)
             //playerHelper更新cover的可选清晰度
             playerHelper?.addCacheRate()
+            playerUI?.setVideoSources(sourcesData)
+            dataSource?.espList?.addAll(videoData!!.plays!!)
             if (episodeId == 0L)//非本地缓存视频
                 checkLocalFile(videoPlay!!.videoId)
         } else if (videoData!!.plays != null && videoData!!.plays!!.isNotEmpty()) {
@@ -397,9 +397,9 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
             //目标videoplay不存在,设置默认的videoplay
             if (videoPlay == null) videoPlay = videoData!!.plays!![0]
             playerHelper = PlayerHelper(videoData!!)
-            dataSource?.espList?.addAll(videoData!!.plays!!)
             //playerHelper更新cover的可选清晰度
             playerHelper?.addCacheRate()
+            dataSource?.espList?.addAll(videoData!!.plays!!)
             if (episodeId == 0L)//非本地缓存视频,指定播放集
                 checkLocalFile(videoPlay!!.videoId)
         } else if (!TextUtils.isEmpty(videoData!!.sourceUrl)) {
@@ -577,7 +577,8 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
     /**
      * 切换剧集操作
      */
-    fun changeEsp(position: Int) {//18920349872
+    fun changeEsp(position: Int) {
+        requestAllAd()
         mAssist!!.pause()
         val oldPostion = playerUI?.episodeAdapter?.selected
         playerUI?.episodeAdapter?.selected = position
@@ -971,7 +972,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
             OnErrorEventListener.ERROR_EVENT_UNKNOWN -> {
                 mAssist?.switchDecoder(App.PLAN_ID_IJK)
                 sendUrlToPlayer(dataSource?.data!!)
-                mAssist?.play()
             }
             OnErrorEventListener.ERROR_EVENT_TIME_OUT -> { //time out
                 //重新获取ip,并播放
@@ -1033,17 +1033,17 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
             networkChangedReceiver = NetworkStatusReceiver()
         val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         registerReceiver(networkChangedReceiver, intentFilter)
-        App.playerNetStateData.observe(this, { result ->
+        App.playerNetStateData.observe(this) { result ->
             //恢复播放
             if (result == 2 && mReceiverGroup?.groupValue!!.getBoolean(KEY_ERROR_SHOW)) {
                 mReceiverGroup?.groupValue!!.putBoolean(KEY_NETWORK_RESUME, true)
             }
-        })
+        }
 
         //电池电量变化
-        App.batteryPercent.observe(this, { percent ->
+        App.batteryPercent.observe(this) { percent ->
             mReceiverGroup?.groupValue!!.putInt(KEY_BATTERY_PERCENT, percent!!)
-        })
+        }
 
         checkOrientation()
         val setting = Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION)

@@ -48,25 +48,17 @@ class DataRepository {
     }
 
 
-    fun loadRecommendFeed(page: Int, size: Int): LiveData<HomeTopic>? {
+    fun loadRecommendFeed(page: Int, size: Int): MutableLiveData<HomeTopic?> {
         return if (NetworkUtils.isConnected()) {
             mRemoteDataSource.getRecommendData(page, size)
         } else {
-            null
+            MutableLiveData()
         }
     }
 
     fun loadTopicBanner(): MutableLiveData<HomeBanner?>? {
         return if (NetworkUtils.isConnected()) {
             mRemoteDataSource.topicHomeBanner()
-        } else {
-            null
-        }
-    }
-
-    fun isLoadingRecommendData(): LiveData<Boolean>? {
-        return if (NetworkUtils.isConnected()) {
-            mRemoteDataSource.isLoadingRecommendData()
         } else {
             null
         }

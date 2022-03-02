@@ -12,7 +12,7 @@ import java.io.Serializable
 data class HomeTopic(
     val code: Int, //1000
     val message: String, //ok
-    val data: HomeData
+    val data: HomeData?
 ) : Serializable
 
 data class HomeData(

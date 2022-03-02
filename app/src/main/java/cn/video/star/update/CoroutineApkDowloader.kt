@@ -68,7 +68,7 @@ class CoroutineApkDowloader(val mContext: Context) {
                     savedFile.write(b, 0, len)
                     val progress =
                         ((total + downloadedLength) * 10000 / contentLength).toInt()
-                    len = inputStream!!.read(b)
+                    len = inputStream.read(b)
                     publishProgress(progress)
                 }
                 //下载完成调用系统文件扫描机制,否则电脑连接显示不了文件

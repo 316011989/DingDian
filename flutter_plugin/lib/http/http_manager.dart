@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -147,17 +146,6 @@ class HttpManager {
     HttpFailureCallback errorCallback,
     @required String tag,
   }) async {
-    //检查网络是否连接
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      if (errorCallback != null) {
-        errorCallback(HttpError(HttpError.NETWORK_ERROR, "网络异常，请稍后重试！"));
-      }
-      LogUtil.v("请求网络异常，请稍后重试！");
-      return;
-    }
-
     //设置默认值
     params = params ?? {};
     method = method ?? 'GET';
@@ -233,17 +221,6 @@ class HttpManager {
     HttpFailureCallback errorCallback,
     @required String tag,
   }) async {
-    //检查网络是否连接
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      if (errorCallback != null) {
-        errorCallback(HttpError(HttpError.NETWORK_ERROR, "网络异常，请稍后重试！"));
-      }
-      LogUtil.v("请求网络异常，请稍后重试！");
-      return;
-    }
-
     ////0代表不设置超时
     int receiveTimeout = 0;
     options ??= options == null
@@ -306,17 +283,6 @@ class HttpManager {
     HttpFailureCallback errorCallback,
     @required String tag,
   }) async {
-    //检查网络是否连接
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      if (errorCallback != null) {
-        errorCallback(HttpError(HttpError.NETWORK_ERROR, "网络异常，请稍后重试！"));
-      }
-      LogUtil.v("请求网络异常，请稍后重试！");
-      return;
-    }
-
     //设置默认值
     params = params ?? {};
 
@@ -431,14 +397,6 @@ class HttpManager {
     Options options,
     @required String tag,
   }) async {
-    //检查网络是否连接
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      LogUtil.v("请求网络异常，请稍后重试！");
-      throw (HttpError(HttpError.NETWORK_ERROR, "网络异常，请稍后重试！"));
-    }
-
     //设置默认值
     params = params ?? {};
     method = method ?? 'GET';
@@ -504,13 +462,6 @@ class HttpManager {
     Options options,
     @required String tag,
   }) async {
-    //检查网络是否连接
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      LogUtil.v("请求网络异常，请稍后重试！");
-      throw (HttpError(HttpError.NETWORK_ERROR, "网络异常，请稍后重试！"));
-    }
     //设置下载不超时
     int receiveTimeout = 0;
     options ??= options == null
@@ -561,14 +512,6 @@ class HttpManager {
     Options options,
     @required String tag,
   }) async {
-    //检查网络是否连接
-    ConnectivityResult connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      LogUtil.v("请求网络异常，请稍后重试！");
-      throw (HttpError(HttpError.NETWORK_ERROR, "网络异常，请稍后重试！"));
-    }
-
     //设置默认值
     params = params ?? {};
 

@@ -34,12 +34,11 @@ dependencies:
   encrypt: ^4.0.1
   crypto: ^2.1.4
   cryptography: ^1.2.1
-  shared_preferences: ^0.5.10
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  connectivity: ^0.4.8+6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

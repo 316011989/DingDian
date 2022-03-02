@@ -8,7 +8,6 @@ class AppStates(
     class V(
         var version: String,
         var channel: String,
-        var baseUrl: String,
-        var needChangeIp: Boolean = true
+        var baseUrl: String
     ) : Serializable
 }

@@ -10,7 +10,7 @@ class PlayerViewModel(videoId: Long, application: Application) :
     AndroidViewModel(application) {
 
     private var videoDetailData: LiveData<VideoDetail>? = null
-    private var videoSourcesData: LiveData<VideoSourcePlays>? = null
+    private var videoSourcesData: LiveData<VideoSourcePlays?>? = null
     private var videoSuggestData: LiveData<VideoSuggest>? = null
 
     private var videoIdData = MutableLiveData<Long>()
@@ -50,7 +50,7 @@ class PlayerViewModel(videoId: Long, application: Application) :
     }
 
 
-    fun getVideoSourcePlays(): LiveData<VideoSourcePlays>? {
+    fun getVideoSourcePlays(): LiveData<VideoSourcePlays?>? {
         return videoSourcesData
     }
 

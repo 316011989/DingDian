@@ -44,6 +44,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|screenSize"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/MainActivityTheme">
             <intent-filter>
@@ -137,7 +138,9 @@
             android:screenOrientation="portrait" />
 
         <!-- wifi网络监听 开机自启动 -->
-        <receiver android:name="cn.video.star.update.NetworkStatusReceiver">
+        <receiver
+            android:name="cn.video.star.update.NetworkStatusReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />

@@ -89,10 +89,10 @@ class PlayerHelper(private val videoData: VideoData) {
                     val serverUrl = App.INSTANCE.m3u8Server!!.createLocalHttpUrl(m3u8File.path)
                     playLocal(serverUrl)
                 } else {
-                    playLocalOrLine(videoPlay, callback)
+                    playOnline(videoPlay, callback)
                 }
             } else {
-                playLocalOrLine(videoPlay, callback)
+                playOnline(videoPlay, callback)
             }
         }
     }
@@ -101,7 +101,12 @@ class PlayerHelper(private val videoData: VideoData) {
      * videoPlay取清晰度
      * 改变url为带清晰度url
      */
-    fun playLocalOrLine(videoPlay: VideoPlay, callback: (videoPlay: VideoPlay) -> Unit) {
+    fun playOnline(videoPlay: VideoPlay, callback: (videoPlay: VideoPlay) -> Unit) {
+        //非0来源的不进行分辨率判断
+        if (videoPlay.source != SOURCE_CC) {
+            callback(videoPlay)
+            return
+        }
         getVideoRate(videoPlay)
         if (clarityList.size > 0) {
             searchDefaultRate {
@@ -144,7 +149,7 @@ class PlayerHelper(private val videoData: VideoData) {
                     if (null == rule) {
                         continue
                     } else {
-                        if (!TextUtils.isEmpty(rule.type) && rule.type.contains(videoData?.type.toString())) {
+                        if (!TextUtils.isEmpty(rule.type) && rule.type.contains(videoData.type.toString())) {
                             //条件视频类型不为空并且包含视频类型
                             if (filterTime(rule, time, true, callback)) {
                                 break
@@ -160,7 +165,7 @@ class PlayerHelper(private val videoData: VideoData) {
                 filterRate(clarityRuleModel!!.defaultId, callback)
             }
         } else {
-            if (videoData?.type == Api.TYPE_ESP || videoData?.type == Api.TYPE_ZY || videoData?.type == Api.TYPE_DM) {
+            if (videoData.type == Api.TYPE_ESP || videoData.type == Api.TYPE_ZY || videoData.type == Api.TYPE_DM) {
                 filterRate(RATE_480, callback)
             } else {
                 filterRate(RATE_720, callback)
@@ -223,18 +228,18 @@ class PlayerHelper(private val videoData: VideoData) {
                     !TextUtils.isEmpty(videoPlay.playUrl)
                 ) {
                     if (videoPlay.playUrl != null)
-                        if (videoPlay.playUrl!!.contains("_")) {
-                            val lastIndex_ = videoPlay.playUrl?.lastIndexOf("_")
-                            val lastDotIndex = videoPlay.playUrl?.lastIndexOf(".")
+                        if (videoPlay.playUrl.contains("_")) {
+                            val lastIndex_ = videoPlay.playUrl.lastIndexOf("_")
+                            val lastDotIndex = videoPlay.playUrl.lastIndexOf(".")
                             videoPlay.playUrl =
-                                videoPlay.playUrl?.replaceRange(
-                                    lastIndex_!!,
-                                    lastDotIndex!!,
+                                videoPlay.playUrl.replaceRange(
+                                    lastIndex_,
+                                    lastDotIndex,
                                     rate.pre
                                 )
                         } else {
-                            val dotLastIndex = videoPlay.playUrl?.lastIndexOf(".")
-                            val str1 = videoPlay.playUrl!!.substring(0, dotLastIndex!!)
+                            val dotLastIndex = videoPlay.playUrl.lastIndexOf(".")
+                            val str1 = videoPlay.playUrl.substring(0, dotLastIndex)
                             videoPlay.playUrl = "$str1${rate.pre}.m3u8"
                         }
                     callback(videoPlay)

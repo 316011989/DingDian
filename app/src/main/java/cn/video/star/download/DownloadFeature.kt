@@ -62,7 +62,7 @@ class DownloadFeature {
             initFlutterPlugin(videoPlay)
             if (videoPlay.source == PlayerHelper.SOURCE_CC) {
                 val playerHelper = PlayerHelper(videoData)
-                playerHelper.playLocalOrLine(videoPlay) {
+                playerHelper.playOnline(videoPlay) {
                     if (videoPlay.rate.contains(PlayerHelper.CACHE_CLARITY)) {
                         playerHelper.changeRateUrl(videoPlay, PlayerHelper.CACHE_CLARITY) {
                             videoPlay.playUrl = it.playUrl

@@ -78,26 +78,14 @@ class HomeFragmentItemType1 : Fragment(),
         }
         val factory = HomeFragmentViewModel.Factory(App.INSTANCE)
         model = ViewModelProviders.of(this, factory).get(HomeFragmentViewModel::class.java)
-        model?.getHomeFeed()?.observe(viewLifecycleOwner, {
-            ALogger.d(tag, "initUI: 首页")
-            if (it != null && it.code == RESPONSE_OK)
-                setFeedList(it.data.topics)//包含广告的feed绘制交给adapter
-        })
-        model?.getHomeBanner()?.observe(viewLifecycleOwner, {
+        model?.getHomeFeed()?.observe(viewLifecycleOwner) {
+            setFeedList(it?.data?.topics)//包含广告的feed绘制交给adapter
+        }
+        model?.getHomeBanner()?.observe(viewLifecycleOwner) {
             if (it != null && it.code == RESPONSE_OK && it.data.adList != null && it.data.adList.size > 0) {
                 setBanners(it.data.adList)
             }
-        })
-        model?.getLoadMoreState()?.observe(viewLifecycleOwner, object : Observer<Boolean> {
-            override fun onChanged(state: Boolean?) {
-                if (state == null) {
-                    return
-                }
-                if (!state) {
-                    finishRefresh()
-                }
-            }
-        })
+        }
 
         refreshData()
     }
@@ -112,7 +100,8 @@ class HomeFragmentItemType1 : Fragment(),
         adapter?.notifyItemChanged(RecommendType.BANNER)
     }
 
-    private fun setFeedList(topics: MutableList<Topic>) {
+    private fun setFeedList(topics: MutableList<Topic>?) {
+        finishRefresh()
         //分页加载
         if (topics != null && topics.size > 0) {
             adapter?.addFeedData(topics)

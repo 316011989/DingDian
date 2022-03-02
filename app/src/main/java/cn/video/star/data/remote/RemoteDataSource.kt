@@ -21,7 +21,6 @@ import java.util.*
 
 class RemoteDataSource : IDataSource {
 
-    private var mIsLoadingRecommend: MutableLiveData<Boolean>? = null
     private var mIsLoadingSearchList: MutableLiveData<Boolean>? = null
     private var mIsLoadingSuggestList: MutableLiveData<Boolean>? = null
 
@@ -34,7 +33,6 @@ class RemoteDataSource : IDataSource {
     }
 
     init {
-        mIsLoadingRecommend = MutableLiveData()
         mIsLoadingSearchList = MutableLiveData()
     }
 
@@ -64,40 +62,37 @@ class RemoteDataSource : IDataSource {
         return videoType
     }
 
-    //获取推荐列表
-    override fun getRecommendData(page: Int, size: Int): LiveData<HomeTopic>? {
-        mIsLoadingRecommend?.value = true
-        val videoRecommend = MutableLiveData<HomeTopic>()
+    /**
+     * 获取推荐列表
+     */
+    override fun getRecommendData(page: Int, size: Int): MutableLiveData<HomeTopic?> {
+        val videoRecommend = MutableLiveData<HomeTopic?>()
         ApiManager.instance.getApi().topicHome(page, size).enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
-                mIsLoadingRecommend?.value = false
                 Log.d("getHomeFeed", "failure")
                 t.printStackTrace()
+                videoRecommend.value = null
             }
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.body() == null) {
                     Log.d("getHomeFeed", "空数据$response")
-                }
-                if (!TextUtils.isEmpty(response.body())) {
+                    videoRecommend.value = null
+                } else if (!TextUtils.isEmpty(response.body())) {
                     //更新数据
                     try {
                         videoRecommend.value =
                             Gson().fromJson(response.body(), HomeTopic::class.java)
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        mIsLoadingRecommend?.value = false
+                        videoRecommend.value = null
                     }
                 }
-                mIsLoadingRecommend?.value = false
             }
         })
         return videoRecommend
     }
 
-    override fun isLoadingRecommendData(): LiveData<Boolean>? {
-        return mIsLoadingRecommend
-    }
 
     override fun topicHomeBanner(): MutableLiveData<HomeBanner?> {
         val videoRecommend = MutableLiveData<HomeBanner?>()

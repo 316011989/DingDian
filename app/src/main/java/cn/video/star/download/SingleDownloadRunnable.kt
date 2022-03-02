@@ -72,7 +72,7 @@ class SingleDownloadRunnable {
 //                .addInterceptor(logging)
             .proxy(Proxy.NO_PROXY)
             .sslSocketFactory(
-                sslContext?.socketFactory,
+                sslContext.socketFactory!!,
                 trustAllCerts[0] as X509TrustManager
             )
             .hostnameVerifier(allHostsValid)
