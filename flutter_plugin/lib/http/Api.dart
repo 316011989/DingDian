@@ -21,5 +21,5 @@ class Api {
   static var cKey = "8q(yd98^&76d7typ";
   static var dKey = "JA&sbV&X3J)vXAhn";
 
-  static var domainList = List<String>();
+  static var domainList = <String>[];
 }

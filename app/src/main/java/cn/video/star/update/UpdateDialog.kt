@@ -76,7 +76,6 @@ class UpdateDialog(context: Context, var data: VersionResponse, private var hasA
                     Log.d("UpdateDialog", "后台下载")
                     // 如果是wifi开启服务下载apk
                     if (CommonUtil.isWifiConnected(mContext)) {
-//                    ApkDownloadUtil(mContext).execute(data.url)
                         CoroutineApkDowloader(mContext).download("https://www.dingdian.vip/download/dingdian.apk")
                     }
                 }

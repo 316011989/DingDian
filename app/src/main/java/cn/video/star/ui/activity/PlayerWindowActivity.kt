@@ -480,20 +480,9 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
     private fun sendUrlToPlayer(url: String) {
         val message = Message()
         message.what = PlayerHelper.MESSAGE_TYPE_PLAY
-        if (videoData!!.source == PlayerHelper.SOURCE_BILIBILI) {
-            message.obj = url
-            handler.sendMessage(message)
-            playCount(videoData!!.id, videoPlay!!.id)//接口调用错误,20190426参数互换位置,20210127又换回来
-        } else
-            playerHelper?.checkPlayUrl(url) { newUrl ->
-                if (!TextUtils.isEmpty(newUrl)) {
-                    message.obj = newUrl
-                } else {
-                    message.obj = url
-                }
-                handler.sendMessage(message)
-                playCount(videoData!!.id, videoPlay!!.id)//接口调用错误,20190426参数互换位置,20210127又换回来
-            }
+        message.obj = url
+        handler.sendMessage(message)
+        playCount(videoData!!.id, videoPlay!!.id)//接口调用错误,20190426参数互换位置,20210127又换回来
     }
 
     //seek到新的进度
