@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="cn.video.star">
+    package="cn.yumi.daka">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -9,19 +9,26 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--8.0安装apk需要权限-->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <!--穿山甲需要的权限-->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--趣盈需要的权限-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
     <application
-        android:name="cn.video.star.base.App"
+        android:name="cn.yumi.daka.base.App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,12 +44,12 @@
             android:required="false" />
 
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name="cn.yumi.daka.ui.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="cn.yumi.daka.ui.activity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -55,7 +62,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cn.video.star.ui.activity.PlayerWindowActivity"
+            android:name="cn.yumi.daka.ui.activity.PlayerWindowActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|keyboard"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -63,83 +70,83 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.LoginActivity"
+            android:name="cn.yumi.daka.ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.RegisterActivity"
+            android:name="cn.yumi.daka.ui.activity.RegisterActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.SettingActivity"
+            android:name="cn.yumi.daka.ui.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="cn.yumi.daka.ui.activity.SetNameActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.SetNameActivity"
+            android:name="cn.yumi.daka.ui.activity.SetInfoActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.SetInfoActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="cn.video.star.ui.activity.WebActivity"
+            android:name="cn.yumi.daka.ui.activity.WebActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
 
         <activity
-            android:name="cn.video.star.ui.activity.BillbordActivity"
+            android:name="cn.yumi.daka.ui.activity.BillbordActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.SearchActivity"
+            android:name="cn.yumi.daka.ui.activity.SearchActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.HistoryActivity"
+            android:name="cn.yumi.daka.ui.activity.HistoryActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.FavoriteActivity"
+            android:name="cn.yumi.daka.ui.activity.FavoriteActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.CacheActivity"
+            android:name="cn.yumi.daka.ui.activity.CacheActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.CachingActivity"
+            android:name="cn.yumi.daka.ui.activity.CachingActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.CacheFinishActivity"
+            android:name="cn.yumi.daka.ui.activity.CacheFinishActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.FeedbackActivity"
+            android:name="cn.yumi.daka.ui.activity.FeedbackActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.DisclaimerActivity"
+            android:name="cn.yumi.daka.ui.activity.DisclaimerActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.ShareActivity"
+            android:name="cn.yumi.daka.ui.activity.ShareActivity"
             android:screenOrientation="portrait" />
-
 
         <activity
             android:name="cn.junechiu.junecore.widget.clipimage.ClipImageActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="cn.video.star.ui.activity.ContactUsActivity"
+            android:name="cn.yumi.daka.ui.activity.ContactUsActivity"
             android:screenOrientation="portrait" />
 
         <!-- wifi网络监听 开机自启动 -->
         <receiver
-            android:name="cn.video.star.update.NetworkStatusReceiver"
+            android:name="cn.yumi.daka.update.NetworkStatusReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -152,7 +159,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="cn.video.star.fileProvider"
+            android:authorities="cn.yumi.daka.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -175,7 +182,7 @@
         <!--穿山甲app下载服务-->
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
-            android:authorities=".cn.video.star.TTFileProvider"
+            android:authorities="cn.yumi.daka.TTFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -185,7 +192,7 @@
 
         <provider
             android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
-            android:authorities="cn.video.star.TTMultiProvider"
+            android:authorities="cn.yumi.daka.TTMultiProvider"
             android:exported="false" />
 
 

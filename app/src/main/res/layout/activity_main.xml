@@ -4,7 +4,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.video.star.ui.activity.MainActivity">
+    tools:context="cn.yumi.daka.ui.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/container"

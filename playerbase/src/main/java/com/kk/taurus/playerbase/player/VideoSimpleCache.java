@@ -1,7 +1,5 @@
 package com.kk.taurus.playerbase.player;
 
-import android.content.Context;
-
 import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
@@ -25,11 +23,11 @@ public class VideoSimpleCache {
         return VideoSimpleCache.SingletonHolder.INSTANCE;
     }
 
-    public SimpleCache getSimpleCacheByVideoId(String videoId, Context context) {
+    public SimpleCache getSimpleCacheByVideoId(String videoId) {
         if (cacheMap != null && cacheMap.size() > 0 && cacheMap.containsKey(videoId)) {
             return cacheMap.get(videoId);
         } else {
-            SimpleCache simpleCache = new SimpleCache(new File(AppFileUtils.getSimpleCacheDir(context), videoId), new NoOpCacheEvictor());
+            SimpleCache simpleCache = new SimpleCache(new File(AppFileUtils.getSimpleCacheDir(), videoId), new NoOpCacheEvictor());
             cacheMap.put(videoId, simpleCache);
             return simpleCache;
         }

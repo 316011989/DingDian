@@ -15,19 +15,22 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        applicationId "cn.video.star"
+        applicationId "cn.yumi.daka"
         minSdkVersion 21
         targetSdkVersion 31
         buildToolsVersion = '30.0.3'
-        versionCode 511
-        versionName "5.1.1"
+        versionCode 520
+        versionName "5.2.0"
         flavorDimensions "versionCode"
         multiDexEnabled true
 
         ndk {
+//            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86"
             abiFilters "armeabi", "armeabi-v7a"
         }
+
     }
+
     signingConfigs {
         //加载properties
         def properties = new Properties()
@@ -35,10 +38,10 @@ android {
         properties.load(inputStream)
 
         config {
+            keyAlias 'yumi'
+            keyPassword '123456'
             storeFile file(properties.getProperty('RELEASE_STORE_FILE'))
-            keyAlias 'movie'
-            keyPassword 'ikickercn'
-            storePassword 'ikickercn'
+            storePassword '123456'
         }
     }
     buildTypes {
@@ -63,7 +66,7 @@ android {
     }
 
     productFlavors {
-        dingdian {}
+        ymdy {}
     }
     lint {
         abortOnError false
@@ -95,13 +98,14 @@ def md5apk(file) {
 //./gradlew md5
 task md5() {
 //    md5apk(new File(getBuildDir().parent + '/ymdy/release/app-ymdy-release.apk'))
-    md5apk(new File('D:\\360jiagubao_windows_64\\jiagu\\output\\ymdy_311_test1_311_jiagu_sign.apk'))
+    md5apk(new File('D:\\360jiagubao_windows_64\\jiagu\\output\\316011989@qq.com\\ymdy_520_test4_520_jiagu_sign.apk'))
 }
 
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':junecore')
+    implementation files('libs/js.jar')
     implementation project(':playerbase')
     implementation project(':flutter')
 
@@ -142,5 +146,7 @@ dependencies {
     implementation 'com.umeng.umsdk:apm:1.2.0'//推荐，错误分析升级为U-APM产品，关注crash数据需集成
 
     //穿山甲sdk
-    implementation 'com.pangle.cn:ads-sdk-pro:4.2.1.0'
+    implementation 'com.pangle.cn:ads-sdk-pro:4.6.0.7'
+
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
 }

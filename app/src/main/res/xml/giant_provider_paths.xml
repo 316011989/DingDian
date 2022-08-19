@@ -17,7 +17,7 @@
 
     <external-path
         name="files_root"
-        path="Android/data/cn.video.star/" />
+        path="Android/data/cn.yumi.star/" />
     <external-path
         name="external_storage_root"
         path="." />

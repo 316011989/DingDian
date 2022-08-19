@@ -30,6 +30,9 @@ import java.util.Set;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
+/**
+ * Created by Taurus on 2018/4/18.
+ */
 
 public class IjkPlayer extends BaseInternalPlayer {
     private final String TAG = "IjkPlayer";
@@ -585,4 +588,3 @@ public class IjkPlayer extends BaseInternalPlayer {
             (mp, percent) -> submitBufferingUpdate(percent, null);
 
 }
-

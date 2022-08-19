@@ -14,7 +14,3 @@ class Util {
     return hex.encode(digest.bytes);
   }
 }
-
-// void main() {
-//   print(Util.ysdqMd5('ysdq'));
-// }

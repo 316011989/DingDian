@@ -17,7 +17,6 @@
 package com.kk.taurus.playerbase.config;
 
 import android.app.Application;
-
 import com.kk.taurus.playerbase.lebo.LeCast;
 import com.kk.taurus.playerbase.utils.VideoUtil;
 

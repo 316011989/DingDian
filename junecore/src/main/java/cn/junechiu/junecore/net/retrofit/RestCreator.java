@@ -39,6 +39,7 @@ public class RestCreator {
                 .client(OKHttpHolder.OKHTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
+
         private static final Retrofit RETROFIT_GSON_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OKHTTP_CLIENT)
@@ -102,7 +103,6 @@ public class RestCreator {
     public static Retrofit getGsonRetrofit() {
         return RetrofitHolder.RETROFIT_GSON_CLIENT;
     }
-
 
     /**
      * 返回Retrofit Service

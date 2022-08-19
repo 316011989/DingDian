@@ -424,7 +424,7 @@ class HttpManager {
           options: options,
           cancelToken: cancelToken);
       int statusCode = response.statusCode;
-      LogUtil.v("_requestAsync  statusCode: $statusCode  statusMessage: ${response.statusMessage}");
+      print('response::: statusCode: $statusCode  statusMessage: ${response.statusMessage}');
       if (statusCode == 200 || statusCode == 201) {
         //成功
         return response.data;

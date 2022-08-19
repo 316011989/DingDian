@@ -18,49 +18,48 @@ public class AppFileUtils {
 
     public static String LOCAL = "local";
 
-    private static String getAppDir(Context context) {
-        return context.getExternalCacheDir() + "/.DingdianVideo";
-//        return Environment.getExternalStorageDirectory() + "/.DingdianVideo";
+    private static String getAppDir() {
+        return Environment.getExternalStorageDirectory() + "/.YumiVideo";
     }
 
-//    public static String getCacheDir() {
-//        String dir = getAppDir() + "/Cache/";
-//        return mkdirs(dir);
-//    }
-
-//    public static String getMovieDir() {
-//        String dir = getAppDir() + "/Movie/";
-//        return mkdirs(dir);
-//    }
-//
-//    public static String getLogDir() {
-//        String dir = getAppDir() + "/Log/";
-//        return mkdirs(dir);
-//    }
-
-    public static String getSimpleCacheDir(Context context) {
-        String dir = getAppDir(context) + "/SimpleCache/";
+    public static String getCacheDir() {
+        String dir = getAppDir() + "/Cache/";
         return mkdirs(dir);
     }
 
-//    public static String getCacheMovieDir(String movieName) {
-//        String dir = getCacheDir() + movieName + "/";
-//        return mkdirs(dir);
-//    }
-//
-//    public static String getCacheVideoDir(String movieName, String videoName) {
-//        String dir = getCacheDir() + movieName + "/" + videoName + "/";
-//        return mkdirs(dir);
-//    }
-//
-//    public static String getSplashDir(Context context) {
-//        String dir = context.getFilesDir() + "/splash/";
-//        return mkdirs(dir);
-//    }
-//
-//    public static String getCorpImagePath(Context context) {
-//        return context.getExternalCacheDir() + "/corp.jpg";
-//    }
+    public static String getMovieDir() {
+        String dir = getAppDir() + "/Movie/";
+        return mkdirs(dir);
+    }
+
+    public static String getLogDir() {
+        String dir = getAppDir() + "/Log/";
+        return mkdirs(dir);
+    }
+
+    public static String getSimpleCacheDir() {
+        String dir = getAppDir() + "/SimpleCache/";
+        return mkdirs(dir);
+    }
+
+    public static String getCacheMovieDir(String movieName) {
+        String dir = getCacheDir() + movieName + "/";
+        return mkdirs(dir);
+    }
+
+    public static String getCacheVideoDir(String movieName, String videoName) {
+        String dir = getCacheDir() + movieName + "/" + videoName + "/";
+        return mkdirs(dir);
+    }
+
+    public static String getSplashDir(Context context) {
+        String dir = context.getFilesDir() + "/splash/";
+        return mkdirs(dir);
+    }
+
+    public static String getCorpImagePath(Context context) {
+        return context.getExternalCacheDir() + "/corp.jpg";
+    }
 
     private static String mkdirs(String dir) {
         File file = new File(dir);

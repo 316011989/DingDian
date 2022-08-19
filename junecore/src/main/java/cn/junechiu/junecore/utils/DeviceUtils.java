@@ -549,7 +549,7 @@ public class DeviceUtils {
         Uri data;
         // 判断版本大于等于7.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            // "cn.video.star.fileProvider"即是在清单文件中配置的authorities
+            // "cn.yumi.daka.fileProvider"即是在清单文件中配置的authorities
             data = FileProvider.getUriForFile(context, "cn.yumi.daka.fileProvider", file);
             // 给目标应用一个临时授权
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

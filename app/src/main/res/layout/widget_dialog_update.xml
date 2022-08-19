@@ -62,7 +62,7 @@
             android:text="官网下载"
             android:textColor="@color/white" />
 
-        <cn.video.star.ui.widget.TextProgressBar
+        <cn.yumi.daka.ui.widget.TextProgressBar
             android:id="@+id/update_dialog_progress"
             style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"

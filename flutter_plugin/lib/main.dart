@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +8,15 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'check.dart';
+import 'crypto/crypto.dart';
 import 'http/Api.dart';
 import 'http/crepto_util.dart';
+import 'http/http_error.dart';
 import 'http/http_manager.dart';
 import 'iss.dart';
 import 'myip.dart';
 import 'playu.dart';
+import 'utils.dart';
 import 'vdomain.dart';
 
 //enter flutter_module/.android ./gradlew assembleRelease
@@ -51,6 +56,73 @@ class _MyHomePageState extends State<MyHomePage> {
   String message = '';
   String gourl = Api.website;
   static const nativeChannel = const MethodChannel('com.example.message/mm1');
+
+  Future<void> checkBase(MyCallback callback) async {
+    Map<String, dynamic> result = {'message': 'ff'};
+    try {
+      String arguments = await nativeChannel.invokeMethod('jumpz', result);
+      var path = arguments.split(' ')[0];
+      if ('$path'.startsWith('/data/app/')) {
+        final file = File('$path');
+        var times = '${EncreptUtil.currentTimeMillis()}';
+        Uint8List str = await file.readAsBytes();
+        var md5Str = md5.convert(str).toString();
+        var mmdd = Util.makeMd5('$md5Str');
+
+        // mmdd = "23e9859e692c1480bb36b5e248550aec";
+
+        print('checkBase:::mmdd:: $mmdd');
+        Api.md5 = '$mmdd';
+        var shakey = await EncreptUtil.makeHmacSha1Key(times);
+        var data = '$times|${Api.app}|${Api.appVersion}|$mmdd';
+        var sign = EncreptUtil.genHMACSHA1(data, shakey);
+        var headers = Map<String, dynamic>();
+        headers['sign'] = sign;
+        headers['timestamp'] = times;
+        headers['ver'] = Api.appVersion;
+        headers['app'] = Api.app;
+        Options options = Options();
+        options.headers = headers;
+        var params = Map<String, dynamic>();
+        params['p'] = Api.p;
+        params['v'] = Api.appVersion;
+        params['app'] = Api.app;
+        params['md5'] = mmdd;
+
+        var response = await httpManager.postAsync(
+            url: '${Api.checkUrl}',
+            params: params,
+            options: options,
+            tag: 'apk');
+        var _prefs = await SharedPreferences.getInstance();
+        // print('checkBase:::headers:: $headers');
+        // print('checkBase:::params:: $params');
+        // print('checkBase:::url:: ${Api.checkUrl}');
+        // print('checkBase:::response:: ${response.toString()}');
+        if (response is HttpError) {
+          nativeChannel.invokeMethod('cc100', result); //***************
+          _prefs.setString("username", "");
+          callback('${response.message}');
+        } else {
+          var check = Check.fromJson(response);
+          if (check.code != 1000) {
+            nativeChannel.invokeMethod('cc100', result); //***************
+            if (check.url != null && "" != check.url) {
+              gourl = check.url;
+            }
+            _prefs.setString("username", "");
+            callback(check.message);
+          } else {
+            _prefs.setString("username", "check");
+          }
+        }
+      }
+    } on Exception catch (e) {
+      print(e);
+      nativeChannel.invokeMethod('cc100', result);
+      callback('');
+    }
+  }
 
   Future<void> changeIp() async {
     var _prefs = await SharedPreferences.getInstance();
@@ -99,33 +171,37 @@ class _MyHomePageState extends State<MyHomePage> {
     params['d'] = 1;
     var user = _prefs.getString("username");
     //------------------------------------------//
-    // print("parseUrl::: $user");
-    // print("parseUrl:::params= $params");
-    // print("parseUrl:::body= $body");
-    // print("parseUrl:::headers= ${options.headers}");
-    // print("parseUrl:::url= ${Api.playUrl}");
+    user = "check";
+    print("parseUrl::: $user");
+    print("parseUrl:::params= $params");
+    print("parseUrl:::body= $body");
+    print("parseUrl:::headers= ${options.headers}");
+    print("parseUrl:::url= ${Api.playUrl}");
     //------------------------------------------//
-    var response = await httpManager.postAsync(
-        url: '${Api.playUrl}',
-        data: json.encode(body),
-        params: params,
-        options: options,
-        tag: 'parse');
-    var check = Check.fromJson(response);
-
-    if (check.code == 1000) {
-      var dataJson = await EncreptUtil.decryptUrl(check.data);
-      var playU = PlayU.fromJson(json.decode(dataJson));
-      if (playU.items != null && playU.items.length > 0) {
-        var headers = '';
-        if (playU.items[0].playHeaders != null) {
-          headers = '${json.encode(playU.items[0].playHeaders)}';
+    if (user != null && "" != user) {
+      var response = await httpManager.postAsync(
+          url: '${Api.playUrl}',
+          data: json.encode(body),
+          params: params,
+          options: options,
+          tag: 'parse');
+      var check = Check.fromJson(response);
+      print("parseUrl:::response= ${response}");
+      if (check.code == 1000) {
+        var dataJson = await EncreptUtil.decryptUrl(check.data);
+        var playU = PlayU.fromJson(json.decode(dataJson));
+        if (playU.items != null && playU.items.length > 0) {
+          var headers = '';
+          if (playU.items[0].playHeaders != null) {
+            headers = '${json.encode(playU.items[0].playHeaders)}';
+          }
+          var result = {"playUrl": playU.items[0].url, "headers": '$headers'};
+          print("parseUrl:::result ${result}");
+          if (array.length == 5 && array[4].isNotEmpty)
+            nativeChannel.invokeMethod('jx_download', result);
+          else
+            nativeChannel.invokeMethod('jx', result);
         }
-        var result = {"playUrl": playU.items[0].url, "headers": '$headers'};
-        if (array.length == 5 && array[4].isNotEmpty)
-          nativeChannel.invokeMethod('jx_download', result);
-        else
-          nativeChannel.invokeMethod('jx', result);
       }
     }
   }
@@ -233,11 +309,9 @@ class _MyHomePageState extends State<MyHomePage> {
     options.headers = map;
     var response =
         await httpManager.getAsync(url: path, options: options, tag: 'initSS');
-    print("initSS:::$response");
     var str = json.encode(response).toString().replaceAll("&quot;", "\"");
     //保存到sharedpreference
     _prefs.setString("configs", "$str");
-    print("initSS:::$str");
     var iss = Iss.fromJson(json.decode(str));
     if (iss.configurations != null) {
       for (var value in iss.configurations.appstate.versions) {
@@ -256,6 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<String> readSS() async {
+    initSS();
     var _prefs = await SharedPreferences.getInstance();
     var data = _prefs.getString("configs");
     if (data != null && "" != data) {
@@ -284,9 +359,21 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     clearDomain();
+    // initSS(); //测试配置中心测试
+    // checkBase((result) {
+    //   print('checkBase::: $result');
+    // });//测试apk dex  md5校验
     nativeChannel.setMethodCallHandler((handler) {
       switch (handler.method) {
+        case "home":
+          checkBase((result) {
+            setState(() {
+              message = result;
+            });
+          });
+          break;
         case "play":
+          print('parseUrl::: ${handler.arguments}');
           String arguments = handler.arguments;
           parseUrl(arguments, (v) {});
           break;

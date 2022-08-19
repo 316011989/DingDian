@@ -375,7 +375,7 @@ public static java.lang.String TABLENAME;
 -keep class com.heytap.** {*;}
 -keep class a.** {*;}
 -keep class com.vivo.** {*;}
--keep public class cn.video.star.R$*{
+-keep public class cn.yumi.daka.R$*{
 public static final int *;
 }
 
@@ -387,3 +387,6 @@ public static final int *;
 #playerBase
 -keep public class * extends android.view.View{*;}
 -keep public class * implements com.kk.taurus.playerbase.player.IPlayer{*;}
+
+#p2p
+-keep class com.cnc.p2p.sdk.**{*;}
