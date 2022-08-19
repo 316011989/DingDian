@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "cn.yumi.daka",
+  "variantName": "ymdyRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 520,
+      "versionName": "5.2.0",
+      "outputFile": "app-ymdy-release.apk"
+    }
+  ],
+  "elementType": "File"
+}
