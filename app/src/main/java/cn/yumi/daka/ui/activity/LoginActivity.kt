@@ -61,23 +61,7 @@ class LoginActivity : BaseActivity() {
     private fun getPhoneCode() {
         val phone = editPhone.text.toString()
         if (!TextUtils.isEmpty(phone)) {
-            if (phone.length == 11) {
-                val params = WeakHashMap<String, String>()
-                params["phone"] = phone
-                params["deviceid"] = DeviceUtils.getIMEI(application)
-                model?.getPhoneCode(params)?.observe(this, Observer<Int> { t ->
-                    if (t == null) {
-                        return@Observer
-                    } else {
-                        toast(R.string.phone_code_send)
-                        startTimer()
-                    }
-                })
-            } else {
-                toast(R.string.phone_error)
-            }
-        } else {
-            toast(R.string.input_phone_num)
+            toast(R.string.phone_error)
         }
     }
 
@@ -96,7 +80,7 @@ class LoginActivity : BaseActivity() {
     private fun startTimer() {
         var codeTime = getString(R.string.get_phonecode_str)
         phoneCodeBtn.isEnabled = false
-        phoneCodeBtn.setTextColor(ContextCompat.getColor(this,R.color.c7b50db))
+        phoneCodeBtn.setTextColor(ContextCompat.getColor(this, R.color.c7b50db))
         countDownTimer = object : CountDownTimer((count * 1000).toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 count -= 1
@@ -107,7 +91,12 @@ class LoginActivity : BaseActivity() {
                 count = 120
                 phoneCodeBtn.isEnabled = true
                 phoneCodeBtn.setText(R.string.getcode_again)
-                phoneCodeBtn.setTextColor(ContextCompat.getColor(this@LoginActivity,R.color.c444444))
+                phoneCodeBtn.setTextColor(
+                    ContextCompat.getColor(
+                        this@LoginActivity,
+                        R.color.c444444
+                    )
+                )
             }
         }
         countDownTimer?.start()
@@ -119,24 +108,7 @@ class LoginActivity : BaseActivity() {
         val code = editCode.text.toString()
         if (!TextUtils.isEmpty(phone)) {
             if (phone.length == 11) {
-                if (!TextUtils.isEmpty(code)) {
-                    var params = WeakHashMap<String, String>()
-                    params["phone"] = phone
-                    params["code"] = code
-                    params["deviceid"] = DeviceUtils.getIMEI(application)
-                    model?.login(params)?.observe(this,
-                        Observer<LoginResponse> { login ->
-                            if (login != null) {
-                                if (login.code == RESPONSE_OK) {
-//                                    loginSuccess(login.data)
-                                } else {
-                                    toast(login.message)
-                                }
-                            }
-                        })
-                } else {
-                    toast(R.string.input_code_)
-                }
+                toast(R.string.phone_error)
             } else {
                 toast(R.string.phone_error)
             }
@@ -144,7 +116,6 @@ class LoginActivity : BaseActivity() {
             toast(R.string.input_phone_num)
         }
     }
-
 
 
     override fun onDestroy() {

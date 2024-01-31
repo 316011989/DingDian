@@ -52,14 +52,12 @@ class FeedbackActivity : BaseActivity() {
             } else {
                 json.put("contactWay", contactWay)
             }
-            json.put("deviceId", DeviceUtils.getIMEI(application))
-            if (json.length() >= 4) {
-                DataRepository.instance.feedback(json.toString(), getUserAgent())?.observe(this,
-                    Observer<Int> { result ->
-                        if (result != null && result == 1) {
-                            killMyself()
-                        }
-                    })
+            DataRepository.instance.feedback(json.toString(), getUserAgent())?.observe(
+                this
+            ) { result ->
+                if (result != null && result == 1) {
+                    killMyself()
+                }
             }
         }
 

@@ -33,9 +33,6 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.SPUtils
 import com.cnc.p2p.sdk.P2PManager
 import com.kk.taurus.playerbase.player.AppFileUtils
-import io.flutter.embedding.android.FlutterView
-import io.flutter.embedding.engine.dart.DartExecutor
-import io.flutter.plugin.common.MethodChannel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import java.io.File
@@ -48,7 +45,6 @@ class MainActivity : BaseActivity() {
     private var mExitTime: Long = 0//返回按键计时
     private var versionCheckFinish = true
 
-    private var ffChannel: MethodChannel? = null//flutter插件
 
 
     override fun initView(savedInstanceState: Bundle?): Int {
@@ -56,50 +52,15 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        setFlutterAnalysisPlugin()
         if (NetworkUtils.isWifiConnected() || SPUtils.getInstance().getBoolean("OpenMobileData")) {
             startDownload()
         }
         Handler().postDelayed({ checklaunchBundle() }, 800)
         deleteSimpleCache()
-        Handler().postDelayed({
-            ffChannel?.invokeMethod("initSS", App.INSTANCE.versionName)
-        }, 1500)
         startActivity(Intent(this, SplashActivity::class.java))
-    }
-
-    /**
-     * 配置flutter解析插件
-     */
-    private fun setFlutterAnalysisPlugin() {
-        App.INSTANCE.flutterEngine?.navigationChannel?.setInitialRoute("home")
-        App.INSTANCE.flutterEngine?.dartExecutor?.executeDartEntrypoint(
-            DartExecutor.DartEntrypoint.createDefault()
-        )
-        val flutterView = FlutterView(this)
-        helloText.addView(flutterView)
-        if (App.INSTANCE.flutterEngine != null) {
-            flutterView.attachToFlutterEngine(App.INSTANCE.flutterEngine!!)
-        }
-        ffChannel = App.INSTANCE.flutterEngine?.dartExecutor?.binaryMessenger?.let {
-            MethodChannel(
-                it, "com.example.message/mm1"
-            )
-        }
-        ffChannel?.setMethodCallHandler { methodCall, result ->
-            when (methodCall.method) {
-                "iss" -> {
-                    if (methodCall.arguments != null) {
-                        ffChannel?.invokeMethod("home", "aaa")
-                        val issstr = methodCall.argument<String>("iss")
-                        ConfigCenter(this).readConfig(issstr) {
+        ConfigCenter(this).readConfig("") {
 //                            subscribeUI()
-                            createBottomBar()
-                        }
-                    }
-                }
-                else -> result.notImplemented()
-            }
+            createBottomBar()
         }
     }
 
@@ -308,23 +269,14 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (App.INSTANCE.flutterEngine != null) {
-            App.INSTANCE.flutterEngine?.lifecycleChannel?.appIsResumed()
-        }
     }
 
     override fun onPause() {
         super.onPause()
-        if (App.INSTANCE.flutterEngine != null) {
-            App.INSTANCE.flutterEngine?.lifecycleChannel?.appIsInactive()
-        }
     }
 
     override fun onStop() {
         super.onStop()
-        if (App.INSTANCE.flutterEngine != null) {
-            App.INSTANCE.flutterEngine?.lifecycleChannel?.appIsPaused()
-        }
     }
 
 

@@ -11,10 +11,6 @@ import cn.yumi.daka.data.remote.model.VideoPlay
 import cn.yumi.daka.ui.activity.PlayerHelper
 import cn.yumi.daka.utils.ConfigCenter
 import com.alibaba.fastjson.JSON
-import com.blankj.utilcode.util.ToastUtils
-import io.flutter.embedding.engine.dart.DartExecutor
-import io.flutter.plugin.common.MethodChannel
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,11 +21,6 @@ class DownloadFeature {
     companion object {
 
         var videoPlay: VideoPlay? = null
-        var ffChannel = App.INSTANCE.flutterEngine?.dartExecutor?.binaryMessenger?.let {
-            MethodChannel(
-                it, "com.example.message/mm1"
-            )
-        }
 
         /**
          * 数据库
@@ -68,7 +59,6 @@ class DownloadFeature {
          * 解析
          */
         private fun parsePlayUrl(videoData: VideoData, videoPlay: VideoPlay) {
-            initFlutterPlugin(videoPlay)
             if (videoPlay.source == PlayerHelper.SOURCE_CC) {
                 val playerHelper = PlayerHelper(videoData)
                 playerHelper.playOnline(videoPlay) {
@@ -79,7 +69,6 @@ class DownloadFeature {
                     }
                     val args =
                         "${videoPlay.id} ${videoPlay.playUrl} ${videoPlay.source} ${App.INSTANCE.versionName} download"
-                    ffChannel?.invokeMethod("play", args)
                 }
             } else if (ConfigCenter.parseUrl4Station != null
                 && ConfigCenter.parseUrl4Station!!.source.contains(videoPlay.source)
@@ -89,7 +78,6 @@ class DownloadFeature {
                 parseAYTMCall.enqueue(object : Callback<String> {
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         t.printStackTrace()
-                        ToastUtils.showLong("不支持下载")
                     }
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -97,7 +85,6 @@ class DownloadFeature {
                             val jo: com.alibaba.fastjson.JSONObject =
                                 JSON.parse(response.body()) as com.alibaba.fastjson.JSONObject
                             if (jo.getString("url") == null || jo.getString("url").isEmpty()) {
-                                ToastUtils.showLong("不支持下载")
                             } else {
                                 videoPlay.playUrl = jo.getString("url")
                                 startDownloadCenter(videoPlay)
@@ -108,39 +95,10 @@ class DownloadFeature {
             } else {
                 val args =
                     "${videoPlay.id} ${videoPlay.playUrl} ${videoPlay.source} ${App.INSTANCE.versionName} download"
-                ffChannel?.invokeMethod("play", args)
             }
 
         }
 
-        private fun initFlutterPlugin(videoPlay: VideoPlay) {
-            App.INSTANCE.flutterEngine?.navigationChannel?.setInitialRoute("download")
-            App.INSTANCE.flutterEngine?.dartExecutor?.executeDartEntrypoint(
-                DartExecutor.DartEntrypoint.createDefault()
-            )
-            ffChannel?.setMethodCallHandler { methodCall, result ->
-                when (methodCall.method) {
-                    "jx_download" -> {
-                        if (methodCall.arguments != null) {
-                            val playUrl = methodCall.argument<String>("playUrl")
-                            val headers = methodCall.argument<String>("headers")
-                            videoPlay.playUrl = playUrl!!
-                            videoPlay.headers = null
-                            if (!headers.isNullOrEmpty()) {
-                                val json = JSONObject(headers)
-                                videoPlay.headers = hashMapOf()
-                                json.keys().forEach { key ->
-                                    videoPlay.headers!![key] = json.get(key).toString()
-                                }
-                            }
-                            startDownloadCenter(videoPlay)
-                        }
-                    }
-                    else -> result.notImplemented()
-                }
-            }
-
-        }
 
 
         /**

@@ -609,20 +609,6 @@ public class DeviceUtils {
         context.startActivity(intent);
     }
 
-    @SuppressLint({"MissingPermission", "HardwareIds"})
-    public static String getIMEI(Context context) {
-        String imei = "";
-        try {
-            TelephonyManager manager = (TelephonyManager) context
-                    .getSystemService(Context.TELEPHONY_SERVICE);
-            imei = manager.getDeviceId();
-            if (imei == null)
-                imei = Settings.Secure.getString(context.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return imei == null ? "" : imei;
-    }
 
     public static String getPhoneType() {
         return Build.MODEL;

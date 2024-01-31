@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-import com.blankj.utilcode.util.ToastUtils;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -28,7 +27,6 @@ public class ProxyInterceptor implements Interceptor {
             //使用代理情况下
             if (!isToast) {
                 isToast = true;
-                ToastUtils.showLong("请关闭代理重试");
             }
             //返回空数据
             return new Response.Builder()

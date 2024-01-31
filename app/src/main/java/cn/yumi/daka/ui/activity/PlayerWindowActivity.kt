@@ -61,8 +61,6 @@ import com.kk.taurus.playerbase.player.IPlayer
 import com.kk.taurus.playerbase.receiver.ReceiverGroup
 import com.kk.taurus.playerbase.render.AspectRatio
 import com.kk.taurus.playerbase.utils.VideoUtil
-import io.flutter.embedding.engine.dart.DartExecutor
-import io.flutter.plugin.common.MethodChannel
 import kotlinx.android.synthetic.main.activity_player_window.*
 import kotlinx.android.synthetic.main.player_cache_layout.*
 import org.json.JSONObject
@@ -70,7 +68,6 @@ import java.net.URL
 import java.util.*
 
 class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEventListener {
-    private var ffChannel: MethodChannel? = null//flutter 播放解析插件
 
     private var playStart = 0L //播放跳过
     private var movieId: Long = 0//要播放的movieId
@@ -126,7 +123,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        initFlutterPlugin()
 
         enterTime = System.currentTimeMillis()//启动播放页时间,用于进入后台计时1分钟以上显示广告
         LeCast.getInstance().browse()//搜索
@@ -162,41 +158,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
         }
     }
 
-    private fun initFlutterPlugin() {
-        App.INSTANCE.flutterEngine?.navigationChannel?.setInitialRoute("play")
-        App.INSTANCE.flutterEngine?.dartExecutor?.executeDartEntrypoint(
-            DartExecutor.DartEntrypoint.createDefault()
-        )
-
-        ffChannel = App.INSTANCE.flutterEngine?.dartExecutor?.binaryMessenger?.let {
-            MethodChannel(
-                it, "com.example.message/mm1"
-            )
-        }
-
-        ffChannel?.setMethodCallHandler { methodCall, result ->
-            when (methodCall.method) {
-                "jx" -> {
-                    if (methodCall.arguments != null) {
-                        val playUrl = methodCall.argument<String>("playUrl")
-                        val headers = methodCall.argument<String>("headers")
-                        dataSource?.data = playUrl
-                        dataSource?.extra?.clear()
-                        if (!headers.isNullOrEmpty()) {
-                            val json = JSONObject(headers)
-                            json.keys().forEach { key ->
-                                dataSource?.extra?.put(key, " ${json.get(key)}")
-                            }
-                        }
-                        //执行p2p加速
-                        if (p2pSpeed(playUrl)) return@setMethodCallHandler
-                        sendUrlToPlayer(playUrl!!)
-                    }
-                }
-                else -> result.notImplemented()
-            }
-        }
-    }
 
 
     /**p2p加速*/
@@ -533,7 +494,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                 //四大站解析交给requestAllAd()方法处理,否则可能延迟5秒不够,仍然出现token过期
             } else {
                 val args = "${it.id} ${it.playUrl} ${it.source} ${App.INSTANCE.versionName}"
-                runOnUiThread { ffChannel?.invokeMethod("play", args) }
             }
         }, {
             sendUrlToPlayer(it)
@@ -1013,7 +973,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         playerHelper?.changeRateUrl(videoPlay!!, id!!) {
                             val args =
                                 "${it.id} ${it.playUrl} ${it.source} ${App.INSTANCE.versionName}"
-                            runOnUiThread { ffChannel?.invokeMethod("play", args) }
                         }
                     }
                 }
@@ -1063,7 +1022,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                 //重新获取ip,并播放
                 val args =
                     "${videoPlay?.id} ${videoPlay?.playUrl} ${videoPlay?.source} ${App.INSTANCE.versionName}"
-                runOnUiThread { ffChannel?.invokeMethod("changeip", args) }
             }
             OnErrorEventListener.ERROR_EVENT_TS_NOTFOUND -> {
                 mAssist?.switchDecoder(App.PLAN_ID_IJK)
@@ -1205,7 +1163,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
         if (videoPlay != null) {
             playerHelper?.setPlayUrl(videoPlay!!, {
                 val args = "${it.id} ${it.playUrl} ${it.source} ${App.INSTANCE.versionName}"
-                runOnUiThread { ffChannel?.invokeMethod("play", args) }
             }, {
                 sendUrlToPlayer(it)
             })

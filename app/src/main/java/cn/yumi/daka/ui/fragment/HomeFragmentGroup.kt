@@ -61,7 +61,7 @@ class HomeFragmentGroup : Fragment() {
     private fun subscribeUI() {
         val factory = ChannelsViewModel.Factory(App.INSTANCE)
         val model = ViewModelProviders.of(this, factory).get(ChannelsViewModel::class.java)
-        model.getVideoType()?.observe(viewLifecycleOwner, { typeData ->
+        model.getVideoType()?.observe(viewLifecycleOwner) { typeData ->
             if (typeData != null) {
                 setTypeData(typeData)
             } else {
@@ -74,7 +74,7 @@ class HomeFragmentGroup : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 
     private fun setTypeData(category: VideoType) {

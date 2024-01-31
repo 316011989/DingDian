@@ -11,8 +11,8 @@ apply plugin: 'bugly'
 android {
     compileSdkVersion 31
     compileOptions {//java8支持
-        targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
         applicationId "cn.yumi.daka"
@@ -107,7 +107,6 @@ dependencies {
     implementation project(':junecore')
     implementation files('libs/js.jar')
     implementation project(':playerbase')
-    implementation project(':flutter')
 
     implementation 'androidx.fragment:fragment-ktx:1.3.6'
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -128,15 +127,10 @@ dependencies {
     implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
     implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.24'
 
-//    implementation 'com.cdnbye:sdk:0.7.1'//p2p cdnbye sdk 不使用p2p了
-
     implementation 'org.greenrobot:eventbus:3.1.1'//下载功能使用eventbus进行通知
     implementation 'com.alibaba:fastjson:1.2.58'//下载对象
 
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // 下面各SDK根据宿主App是否使用相关业务按需引入。
     // OAID目前为目前国内市场主流的Android Q设备标识，可根据需要选择。

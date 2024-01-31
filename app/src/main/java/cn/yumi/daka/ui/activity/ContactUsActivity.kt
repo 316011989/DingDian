@@ -12,7 +12,6 @@ import cn.yumi.daka.R
 import cn.yumi.daka.base.Api
 import cn.yumi.daka.base.BaseActivity
 import cn.yumi.daka.utils.ConfigCenter
-import com.blankj.utilcode.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_contactus.*
 import kotlinx.android.synthetic.main.include_title.*
 
@@ -56,7 +55,6 @@ class ContactUsActivity : BaseActivity(), View.OnLongClickListener {
                 (v as TextView).text.substring(v.text.indexOf("：") + 1)
             )
         )
-        ToastUtils.showLong("复制成功")
         return false
     }
 

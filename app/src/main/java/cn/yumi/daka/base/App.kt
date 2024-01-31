@@ -41,7 +41,6 @@ import com.kk.taurus.playerbase.lebo.LeCast
 import com.kk.taurus.playerbase.m3u8.M3U8HttpServer
 import com.kk.taurus.playerbase.player.ExoMediaPlayer
 import com.kk.taurus.playerbase.player.IjkPlayer
-import io.flutter.embedding.engine.FlutterEngine
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -79,7 +78,6 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
     //全屏广告,在application中预加载
     var adFullscreenVideoTool: AdFullscreenVideoTool? = null
 
-    var flutterEngine: FlutterEngine? = null//flutter解析库
 
 
     override fun onCreate() {
@@ -92,9 +90,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
         ConfigCenter(this).readConfig(null) {
             initNetConfig()
         }
-        flutterEngine = FlutterEngine(this)//播放下载的解析功能,flutter插件
 
-        initP2p()//p2p加速
         TCAgentUtil.init(this, channelStr) //友盟
         initPlayer()//初始化exo和ijk播放器
         initLocalServer()//本地播放服务
@@ -106,9 +102,6 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
         stopDownloadTask()
     }
 
-    private fun initP2p() {
-        P2PManager.getInstance().init(this, "hnmaowo", "${DeviceUtils.getIMEI(this)}");
-    }
 
 
     /**
