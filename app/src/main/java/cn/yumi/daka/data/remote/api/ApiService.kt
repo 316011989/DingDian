@@ -64,7 +64,7 @@ interface ApiService {
     @GET("topic/home")
     fun topicHome(@Query("page") page: Int, @Query("size") size: Int): Call<String>
 
-    @GET("api/datu")
+    @GET("topic/home/banner")
     fun topicHomeBanner(): Call<String>
 
     @GET("video/detail")

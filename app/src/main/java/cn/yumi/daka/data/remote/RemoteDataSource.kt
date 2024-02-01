@@ -9,7 +9,6 @@ import cn.yumi.daka.base.Api
 import cn.yumi.daka.data.IDataSource
 import cn.yumi.daka.data.local.db.AppDatabaseManager
 import cn.yumi.daka.data.remote.api.ApiManager
-import cn.yumi.daka.data.remote.api.ApiService
 import cn.yumi.daka.data.remote.model.*
 import com.google.gson.Gson
 import okhttp3.MultipartBody
@@ -17,8 +16,6 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.*
 
 class RemoteDataSource : IDataSource {
@@ -92,18 +89,9 @@ class RemoteDataSource : IDataSource {
         return videoRecommend
     }
 
-    /**
-     * 首页轮播图
-     */
     override fun topicHomeBanner(): MutableLiveData<HomeBanner?> {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://jk.xy11.xyz:9101")
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .build()
-        val apiService = retrofit.create(ApiService::class.java)
-
         val videoRecommend = MutableLiveData<HomeBanner?>()
-        apiService.topicHomeBanner().enqueue(object : Callback<String> {
+        ApiManager.instance.getApi().topicHomeBanner().enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 videoRecommend.value = null
                 t.printStackTrace()
