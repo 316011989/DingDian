@@ -4,7 +4,7 @@ import cn.yumi.daka.download.DownloadFileUtil
 
 class Constants {
     companion object {
-        val APK_PATH = DownloadFileUtil.getCacheDir() + "/Ymdy.apk"
+        val APK_PATH = DownloadFileUtil.getCacheDir() + "/dingdian.apk"
         //微信分享
         const val wxAppid = "wx2b993cb00528f4b1"
         const val wxAppSecret = ""
@@ -27,6 +27,6 @@ class Constants {
         const val CDNbyeToken = "NTv1Me5WR"
 
         //友盟
-        const val UMengKey = "5fb61e08257f6b73c097d674"
+        const val UMengKey = "65bb9fb7a7208a5af1a74672"
     }
 }

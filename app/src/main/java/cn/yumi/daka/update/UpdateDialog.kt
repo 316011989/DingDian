@@ -38,10 +38,10 @@ class UpdateDialog(context: Context, var data: VersionResponse, private var hasA
         setContentView(R.layout.widget_dialog_update)
         setCancelable(false)
 
-        update_dialog_tips?.text = fromHtml(data.content)
-        update_dialog_version?.text = data.version
+        update_dialog_tips?.text = fromHtml(data.nr)
+        update_dialog_version?.text = data.v
         Log.d("UpdateDialog", data.toString())
-        if (data.k == "1") {//强制升级效果
+        if (data.qs == "1") {//强制升级效果
             update_dialog_dismissdialog.visibility = View.GONE
         } else {//非强制升级效果
             update_dialog_dismissdialog.visibility = View.VISIBLE
@@ -68,7 +68,7 @@ class UpdateDialog(context: Context, var data: VersionResponse, private var hasA
                     update_dialog_progress.progress = 0
                     update_dialog_progress.setState(TextProgressBar.STATE_PREPARE)
                     registDownloadListener()
-                    CoroutineApkDowloader(mContext).download(data.url)
+                    CoroutineApkDowloader(mContext).download(data.xz)
                 }
             }
             R.id.update_dialog_dismissdialog -> {
@@ -76,7 +76,7 @@ class UpdateDialog(context: Context, var data: VersionResponse, private var hasA
                     Log.d("UpdateDialog", "后台下载")
                     // 如果是wifi开启服务下载apk
                     if (CommonUtil.isWifiConnected(mContext)) {
-                        CoroutineApkDowloader(mContext).download(data.url)
+                        CoroutineApkDowloader(mContext).download(data.xz)
                     }
                 }
                 this@UpdateDialog.dismiss()

@@ -29,12 +29,7 @@ class ConfigCenter(val context: Context) {
     fun readConfig(isstr: String?, callback: () -> Unit) {
         val file = File(context.cacheDir?.path + "/configFile")
         //网络请求配置中心内容不为空
-        val str =
-            if (!isstr.isNullOrEmpty()) isstr
-            //缓存中配置中心内容存在
-            else if (file.exists()) file.readText()
-            //都不存在读取assets文件
-            else FileUtil.getAssetsFile("config")
+        val str = FileUtil.getAssetsFile("config")
 
         try {
             Log.d("configCenter readConfig", str)

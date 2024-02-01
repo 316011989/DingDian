@@ -271,7 +271,7 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
             backToFrontTime = System.currentTimeMillis()
             Log.i("ikicker-app", "onResume: STATE_BACK_TO_FRONT")
             //进入后台时间超过规定时间，并广告位数据不为空,canshowad判断进入后台时间,2.1.2开始不做时间判断,全部展示开屏
-            if (ConfigCenter.adControl != null && ConfigCenter.adControl!!.splash != "" && canShowAd()) {
+            if (ConfigCenter.adControl != null && ConfigCenter.adControl!!.splash != "" ) {
                 Log.i("ikicker-app", "显示开屏广告")
                 val intent = Intent(activity, SplashActivity::class.java)
                 intent.putExtra("ActivityResumed", true)

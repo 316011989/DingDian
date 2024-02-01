@@ -18,7 +18,7 @@ class Api {
   static var checkUrl = toolHost + "/parse/zdjx/verifyapk";//检测apk md5信息是否正常
   static var ipUrl = toolHost + "/parse/myip";//获取本机ip地址
   static var dnsUrl = toolHost + "/parse/lookup/domain";//获取dns iplist
-  static var website = "https://ymdy.app";//官网
+  static var website = "https://www.dingdian.vip";//官网
 
   static var DD = "api.ybliy.com";
 

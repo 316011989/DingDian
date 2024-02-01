@@ -159,7 +159,6 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
     }
 
 
-
     /**p2p加速*/
     private fun p2pSpeed(playUrl: String?): Boolean {
         if (dataSource?.from == PlayerHelper.SOURCE_CC) {
@@ -421,11 +420,13 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
         when {
             episodeId != 0L ->//本地有数据,已经在subscribeUi之前启动播放了
                 return
+
             videoPlay != null ->  //本地没有数据,网络有数据
             { //请求广告
                 requestAllAd()
                 setPlayUrl()
             }
+
             else ->  //本地无数据并且网络请求失败,提示错误
                 showResourceState(true, getString(R.string.video_adding))
         }
@@ -469,9 +470,11 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
             Api.TYPE_ESP, Api.TYPE_DM -> {
                 dataSource?.title = "${videoData!!.name}   第${videoPlay!!.episode}集"
             }
+
             Api.TYPE_ZY -> {
                 dataSource?.title = "${videoData!!.name}   第${videoPlay!!.episode}期"
             }
+
             else -> {
                 dataSource?.title = videoData!!.name
             }
@@ -493,7 +496,10 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
 //                handler.postDelayed({ parseAYTM(it.playUrl) }, 5000)
                 //四大站解析交给requestAllAd()方法处理,否则可能延迟5秒不够,仍然出现token过期
             } else {
-                val args = "${it.id} ${it.playUrl} ${it.source} ${App.INSTANCE.versionName}"
+                dataSource?.data = it.playUrl
+                dataSource?.extra?.clear()
+                //执行p2p加速
+                sendUrlToPlayer(it.playUrl!!)
             }
         }, {
             sendUrlToPlayer(it)
@@ -591,9 +597,11 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                 PlayerHelper.CHOOSEN_EPISODE_INDEX = 0
                 videoPlay = videoData?.plays?.get(PlayerHelper.CHOOSEN_EPISODE_INDEX)
             }
+
             videoData?.plays?.get(PlayerHelper.CHOOSEN_EPISODE_INDEX) != null -> {
                 videoPlay = videoData?.plays?.get(PlayerHelper.CHOOSEN_EPISODE_INDEX)
             }
+
             else -> {
                 PlayerHelper.CHOOSEN_EPISODE_INDEX = 0
                 videoPlay = videoData?.plays?.get(PlayerHelper.CHOOSEN_EPISODE_INDEX)
@@ -839,6 +847,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                 InterEvent.CODE_REQUEST_PAUSE -> {  //暂停
                     userPause = true
                 }
+
                 DataInter.Event.EVENT_CODE_REQUEST_BACK -> { //点击返回按钮
                     if (PlayerHelper.FLOATWINDOW == 1) {
                         PlayerHelper.FLOATWINDOW = 0
@@ -851,6 +860,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                     }
 
                 }
+
                 DataInter.Event.EVENT_CODE_REQUEST_TOGGLE_SCREEN -> { //切换横竖屏
                     if (isLandscape) {
                         setScreenPortrait()
@@ -858,20 +868,25 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         setScreenLandscape()
                     }
                 }
+
                 DataInter.Event.EVENT_CODE_ERROR_SHOW -> { //错误
                     mAssist?.stop()
                     if (videoPlay != null) //非本地缓存视频播放时上报错误,否则videoplay为空
                         TCAgentUtil.videoPlayFail(videoPlay!!.playUrl, "${videoPlay!!.source}")
                 }
+
                 DataInter.Event.EVENT_CODE_NEXT_ESP -> { //下一集
                     playNext()
                 }
+
                 DataInter.Event.EVENT_CODE_CHANGE_SPEED -> {//改变播放速度
                     mAssist?.setSpeed(bundle?.getFloat(KEY_PLAY_SPEED)!!)
                 }
+
                 DataInter.Event.EVENT_CODE_CHANGE_ESP -> {//改变剧集换集
                     changeEsp(bundle?.getInt(KEY_PLAY_ESP)!!)
                 }
+
                 DataInter.Event.EVENT_CODE_SHARE_WX -> {//微信分享
                     DeviceUtils.showSystemShareOption(
                         this@PlayerWindowActivity,
@@ -879,6 +894,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         ConfigCenter.contactWay?.webSite ?: Api.SHARE_BASE_URL
                     )
                 }
+
                 DataInter.Event.EVENT_CODE_SHARE_CIRCLE -> { //朋友圈分享
                     DeviceUtils.showSystemShareOption(
                         this@PlayerWindowActivity,
@@ -886,9 +902,11 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         ConfigCenter.contactWay?.webSite ?: Api.SHARE_BASE_URL
                     )
                 }
+
                 DataInter.Event.EVENT_CODE_LIKE_VIDEO -> {
                     setFollow()
                 }
+
                 DataInter.Event.EVENT_SELECT_CAST_DEVICE -> {//投屏
                     TCAgentUtil.airplayClick("${videoData!!.id}")
                     mAssist?.pause()
@@ -902,6 +920,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         addPortraitCastCover(index)
                     }
                 }
+
                 DataInter.Event.EVENT_SELECT_REMOVE_CAST -> {
                     //移除横屏投屏
                     if (bundle != null) {
@@ -913,15 +932,18 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                     mAssist?.resume()
                     removeCastCover()
                 }
+
                 DataInter.Event.EVENT_SELECT_REMOVE_CAST_PROTRAIT -> {
                     //移除竖屏投屏
                     mAssist?.resume()
                     removePortraitCastCover()
                 }
+
                 DataInter.Event.EVENT_SELECT_REMOVE_CAST_PROTRAIT_LIST -> {
                     //移除竖屏投屏设备列表
                     playerUI?.removeCastDeviceList()
                 }
+
                 DataInter.Event.EVENT_SELECT_LOCK_SCREEN -> { //锁屏
                     if (bundle != null) {
                         if (bundle.get(KEY_LOCK_SCREEN).toString().toInt() == 1) {
@@ -932,14 +954,17 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                     }
                     checkOrientation()
                 }
+
                 DataInter.Event.EVENT_CODE_PLAY_WINDOW -> { //小窗播放
                     PlayerHelper.FLOATWINDOW = 1
                     playerUI?.windowPlay()
                 }
+
                 DataInter.Event.EVENT_CODE_CLOSE_WINDOW -> { //关闭小窗
                     PlayerHelper.FLOATWINDOW = 0
                     playerUI?.normalPlay()
                 }
+
                 DataInter.Event.EVENT_CODE_RETURN_PLAY -> { //返回全屏
                     PlayerHelper.FLOATWINDOW = 0
                     if (isActivityTop()) {
@@ -952,6 +977,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         startActivity(intent)
                     }
                 }
+
                 DataInter.Event.EVENT_CODE_CHANGE_PIC_RATIO -> {//画面比例
                     when (bundle?.getInt(KEY_PICTURE_RATIO)) {
                         0 -> mAssist?.setAspectRatio(AspectRatio.AspectRatio_FILL_PARENT)
@@ -959,6 +985,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         2 -> mAssist?.setAspectRatio(AspectRatio.AspectRatio_ORIGIN)
                     }
                 }
+
                 DataInter.Event.KEY_CHANGE_UI -> {
                     val show = bundle?.getBoolean(KEY_SHOW_HIDE_UI) as Boolean
                     if (show) {
@@ -967,6 +994,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         hideSystemUI()
                     }
                 }
+
                 DataInter.Event.EVENT_CODE_CHANGE_CLARITY -> {//切换清晰度
                     val id = bundle?.getString(KEY_PLAY_CLARITY)
                     if (!TextUtils.isEmpty(id)) {
@@ -994,9 +1022,11 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                         KEY_HALF_CONTROLLER_COVER
                     ).setControllerState(true)
             }
+
             OnPlayerEventListener.PLAYER_EVENT_ON_PLAY_COMPLETE -> {//播放完成继续下一集
                 playNext()
             }
+
             OnPlayerEventListener.PLAYER_EVENT_ON_DATA_RESPONSE_CODE -> { //ts response code not eq 200
             }
         }
@@ -1015,14 +1045,19 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
             OnErrorEventListener.ERROR_EVENT_COMMON -> {
                 errorStr = "ERROR_EVENT_COMMON" + bundle?.getString("errorMessage")
             }
+
             OnErrorEventListener.ERROR_EVENT_IO -> {
                 errorStr = "ERROR_EVENT_IO" + bundle?.getString("errorMessage")
             }
+
             OnErrorEventListener.ERROR_EVENT_TIME_OUT -> { //time out
                 //重新获取ip,并播放
-                val args =
-                    "${videoPlay?.id} ${videoPlay?.playUrl} ${videoPlay?.source} ${App.INSTANCE.versionName}"
+                dataSource?.data = videoPlay?.playUrl
+                dataSource?.extra?.clear()
+                //执行p2p加速
+                sendUrlToPlayer(videoPlay?.playUrl!!)
             }
+
             OnErrorEventListener.ERROR_EVENT_TS_NOTFOUND -> {
                 mAssist?.switchDecoder(App.PLAN_ID_IJK)
                 sendUrlToPlayer(dataSource?.data!!)
@@ -1162,7 +1197,11 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
     fun onNetWorkChange() {
         if (videoPlay != null) {
             playerHelper?.setPlayUrl(videoPlay!!, {
-                val args = "${it.id} ${it.playUrl} ${it.source} ${App.INSTANCE.versionName}"
+                //重新获取ip,并播放
+                dataSource?.data = it.playUrl
+                dataSource?.extra?.clear()
+                //执行p2p加速
+                sendUrlToPlayer(it.playUrl!!)
             }, {
                 sendUrlToPlayer(it)
             })

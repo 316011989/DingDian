@@ -9,11 +9,14 @@ import cn.junechiu.junecore.utils.ALogger
 import cn.yumi.daka.data.remote.api.ApiManager
 import cn.yumi.daka.data.remote.model.VersionResponse
 import cn.yumi.daka.base.Api.Companion.RESPONSE_OK
+import cn.yumi.daka.data.remote.api.ApiService
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class MainViewModel : ViewModel() {
 
@@ -25,7 +28,12 @@ class MainViewModel : ViewModel() {
 
     //检测更新
     fun checkVersion(version: String) {
-        ApiManager.instance.getApi().version().enqueue(object : Callback<String> {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://jk.xy11.xyz:9101")
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
+        val apiService = retrofit.create(ApiService::class.java)
+        apiService.version().enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 ALogger.d("api--", t.message)
                 versionData.value = null
@@ -54,8 +62,8 @@ class MainViewModel : ViewModel() {
      * 版本号对比
      */
     fun equalsVer(updateBean: VersionResponse?, version: String) {
-        if (updateBean != null && !TextUtils.isEmpty(updateBean.version)) {
-            val mV = Integer.parseInt(updateBean.version.replace(".", ""))
+        if (updateBean != null && !TextUtils.isEmpty(updateBean.v)) {
+            val mV = Integer.parseInt(updateBean.v.replace(".", ""))
             val localV = Integer.parseInt(version.replace(".", ""))
             if (localV < mV) {
                 versionData.value = updateBean //设置数据通知更新

@@ -51,9 +51,11 @@ class HomeFeedAdapter(
             Topic.FEED_PLAYLIST -> {
                 setPlayListData(helper, item)
             }
+
             Topic.FEED_SIXLIST -> {
                 setSixListData(helper, item)
             }
+
             Topic.FEED_AD -> {
                 setADData(helper, item)
             }
@@ -65,6 +67,8 @@ class HomeFeedAdapter(
      */
     private fun setPlayListData(helper: BaseViewHolder, item: Topic) {
         helper.setText(R.id.play_list_name, item.title)
+        if (item.title.contains("苹果") || item.title.contains("iOS") || item.title.contains("ios"))
+            helper.setText(R.id.play_list_name, "苹果商店搜索 Wastewater oxygen calculation")
         val recylerview = helper.getView<RecyclerView>(R.id.playListView)
         recylerview.layoutManager = LinearLayoutManager(
             mContext, LinearLayoutManager.HORIZONTAL,
@@ -90,6 +94,8 @@ class HomeFeedAdapter(
      */
     private fun setSixListData(helper: BaseViewHolder, item: Topic) {
         helper.setText(R.id.six_list_title, item.title)
+        if (item.title.contains("苹果") || item.title.contains("iOS") || item.title.contains("ios"))
+            helper.setText(R.id.six_list_title, "苹果商店搜索 Wastewater oxygen calculation")
         helper.setText(R.id.six_list_des, item.summary)
         val recylerview = helper.getView<RecyclerView>(R.id.sixListView)
         if (item.videoList != null && item.videoList.size > 0) {

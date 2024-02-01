@@ -59,7 +59,7 @@ class MainActivity : BaseActivity() {
         deleteSimpleCache()
         startActivity(Intent(this, SplashActivity::class.java))
         ConfigCenter(this).readConfig("") {
-//                            subscribeUI()
+                            subscribeUI()
             createBottomBar()
         }
     }

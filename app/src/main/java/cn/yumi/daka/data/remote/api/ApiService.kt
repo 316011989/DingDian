@@ -161,7 +161,7 @@ interface ApiService {
     fun feedback(@Body json: String, @Header("User-Agent") head: String): Call<String>
 
 
-    @GET("app/version")
+    @GET("api/bbh?app=yl1z")
     fun version(): Call<String> //VersionResponse
 
     @Headers("Content-Type: application/json")
