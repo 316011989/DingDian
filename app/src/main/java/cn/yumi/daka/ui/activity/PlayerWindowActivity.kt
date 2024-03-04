@@ -315,7 +315,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
         shareButton.setOnClickListener {
             DeviceUtils.showSystemShareOption(
                 this,
-                "追剧，有玉米电影APP就够了",
+                "追剧，有小样影视APP就够了",
                 ConfigCenter.contactWay?.webSite ?: Api.SHARE_BASE_URL
             )
         }
@@ -890,7 +890,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                 DataInter.Event.EVENT_CODE_SHARE_WX -> {//微信分享
                     DeviceUtils.showSystemShareOption(
                         this@PlayerWindowActivity,
-                        "追剧，有玉米电影APP就够了",
+                        "追剧，有小样影视APP就够了",
                         ConfigCenter.contactWay?.webSite ?: Api.SHARE_BASE_URL
                     )
                 }
@@ -898,7 +898,7 @@ class PlayerWindowActivity : BaseActivity(), OnPlayerEventListener, OnErrorEvent
                 DataInter.Event.EVENT_CODE_SHARE_CIRCLE -> { //朋友圈分享
                     DeviceUtils.showSystemShareOption(
                         this@PlayerWindowActivity,
-                        "追剧，有玉米电影APP就够了",
+                        "追剧，有小样影视APP就够了",
                         ConfigCenter.contactWay?.webSite ?: Api.SHARE_BASE_URL
                     )
                 }

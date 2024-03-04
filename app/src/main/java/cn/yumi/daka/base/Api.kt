@@ -13,7 +13,7 @@ class Api {
         const val TOOLS_HOST = "http://p.haody666.com/parse"//本地工具服务器
         const val IPLIST_URL = "${TOOLS_HOST}/lookup/domain?"//获取dns的iplist接口
 
-        const val SHARE_BASE_URL = "https://www.dingdian.vip"//官网地址,分享使用此地址
+        const val SHARE_BASE_URL = "https://www.xy11.xyz"//官网地址,分享使用此地址
 
         const val RESPONSE_OK = 1000
         const val PLAYER_ERROR_CODE = "111"

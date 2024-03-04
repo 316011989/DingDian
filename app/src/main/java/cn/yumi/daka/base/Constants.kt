@@ -27,6 +27,7 @@ class Constants {
         const val CDNbyeToken = "NTv1Me5WR"
 
         //友盟
-        const val UMengKey = "65bb9fb7a7208a5af1a74672"
+//        const val UMengKey = "65bb9fb7a7208a5af1a74672"//
+        const val UMengKey = "65c190cba7208a5af1a9f11d"//蔡启义
     }
 }

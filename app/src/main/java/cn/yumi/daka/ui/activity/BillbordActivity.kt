@@ -132,7 +132,7 @@ class BillbordActivity : BaseActivity() {
     private fun share() {
         DeviceUtils.showSystemShareOption(
             this,
-            "追剧，有玉米电影APP就够了",
+            "追剧，有小样影视APP就够了",
             ConfigCenter.contactWay?.webSite ?: Api.SHARE_BASE_URL
         )
     }

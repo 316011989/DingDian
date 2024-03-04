@@ -42,7 +42,7 @@ public class TTAdManagerHolder {
         TTAdConfig.Builder builder = new TTAdConfig.Builder();
         builder = builder.appId("5216369");
         builder = builder.useTextureView(true) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
-                .appName("顶点视频")
+                .appName("小样影视")
                 .titleBarTheme(TTAdConstant.TITLE_BAR_THEME_LIGHT)
                 .allowShowNotify(true) //是否允许sdk展示通知栏提示
                 .allowShowPageWhenScreenLock(true) //是否在锁屏场景支持展示广告落地页

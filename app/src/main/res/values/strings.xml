@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">顶点视频</string>
+    <string name="app_name">小样影视</string>
 
     <string name="home_first">首页</string>
     <string name="home_channel">频道</string>
     <string name="home_discover">发现</string>
     <string name="home_mine">我的</string>
-    <string name="update_title">玉米电影有更新啦！</string>
+    <string name="update_title">小样影视有更新啦！</string>
     <string name="update_ok_btn">体验新版</string>
     <string name="set_name">修改昵称</string>
     <string name="set_name_tip">请输入正确的名字</string>
@@ -95,7 +95,7 @@
     <string name="default_intro">别做吃瓜群众，快点登录吧~</string>
     <string name="filter_cate">下拉筛选%s</string>
     <string name="disclaimer">免责声明</string>
-    <string name="share_subtitle">玉米电影－自家的影院</string>
+    <string name="share_subtitle">小样影视－自家的影院</string>
     <string name="pause_all">全部暂停</string>
     <string name="start_all">全部开始</string>
     <string name="clear_cache">清理缓存</string>
@@ -169,19 +169,19 @@
     </string>
 
     <string name="disclaimer_text">
-        1.玉米电影APP不提供任何视听上传服务，所有内容均来自影视分享站点所提供的公开引用资源，所有视频及图文版权均归原作者及其网站所有。最大视频APP不存储，不修改界面内容。视频数据流也不经由本公司服务器中转或存储。本站将竭尽所能注明资源来源，但由于互联网转载的不可预性，无法确认所有内容的版权所有人。若原作者对本站所载视频作品版权的归属存有异议，请联系QQ:2165054326，我们将在第一时间予以删除。
+        1.小样影视APP不提供任何视听上传服务，所有内容均来自影视分享站点所提供的公开引用资源，所有视频及图文版权均归原作者及其网站所有。最大视频APP不存储，不修改界面内容。视频数据流也不经由本公司服务器中转或存储。本站将竭尽所能注明资源来源，但由于互联网转载的不可预性，无法确认所有内容的版权所有人。若原作者对本站所载视频作品版权的归属存有异议，请联系QQ:2165054326，我们将在第一时间予以删除。
         \n\n
-        2.任何存在于玉米电影APP上的视频、图文资料均系他人制作或提供，仅为个人观点，不代表最大视频APP网站立场。您可能从这些视频、图文资料上获得资讯，最大视频APP对其合法性概不负责，亦不承担任何法律责任。
+        2.任何存在于小样影视APP上的视频、图文资料均系他人制作或提供，仅为个人观点，不代表最大视频APP网站立场。您可能从这些视频、图文资料上获得资讯，最大视频APP对其合法性概不负责，亦不承担任何法律责任。
         \n\n
-        3.玉米电影APP对网络视频的聚合和分类，是根据用户观看习惯做的浏览引导，这样可以方便用户更快捷的找到相应的视频，本软件并没有对电视频道做编辑和整理。
+        3.小样影视APP对网络视频的聚合和分类，是根据用户观看习惯做的浏览引导，这样可以方便用户更快捷的找到相应的视频，本软件并没有对电视频道做编辑和整理。
         \n\n
-        4.您应该对浏览使玉米电影APP一切服务自行承担风险。我们不做任何形式的保证：不保证站内搜索结果满足您的要求，不保证网站服务不中断，不保证视频及图文资源的安全性、正确性、及时性、合法性。因网络状况、通讯线路、第三方网站等任何原因而导致您不能正常使用最大视频APP，最大视频APP不承担任何法律责任。
+        4.您应该对浏览使小样影视APP一切服务自行承担风险。我们不做任何形式的保证：不保证站内搜索结果满足您的要求，不保证网站服务不中断，不保证视频及图文资源的安全性、正确性、及时性、合法性。因网络状况、通讯线路、第三方网站等任何原因而导致您不能正常使用最大视频APP，最大视频APP不承担任何法律责任。
         \n\n
-        5.玉米电影APP尊重并保护所有使用玉米电影APP用户的个人隐私权，您注册的用户名、电子邮件地址等个人资料，非经您亲自许可或根据相关法律、法规的强制性规定，最大视频APP不会主动地泄露给第三方。
+        5.小样影视APP尊重并保护所有使用小样影视APP用户的个人隐私权，您注册的用户名、电子邮件地址等个人资料，非经您亲自许可或根据相关法律、法规的强制性规定，最大视频APP不会主动地泄露给第三方。
         \n\n
-        6.任何单位或个人认为通过玉米电影APP提供的内容可能涉嫌侵犯其信息网络传播权，应该及时向最大视频APP提出书面权利通知，并提供身份证明、权属证明及详细侵权情况证明。最大视频APP在收到上述法律文件后，将会依法尽快断开相关链接内容。
+        6.任何单位或个人认为通过小样影视APP提供的内容可能涉嫌侵犯其信息网络传播权，应该及时向最大视频APP提出书面权利通知，并提供身份证明、权属证明及详细侵权情况证明。最大视频APP在收到上述法律文件后，将会依法尽快断开相关链接内容。
         \n\n
-        7.玉米电影APP一切资源仅为学习交流娱乐所用，请在下载后24小时内删除，未经版权许可，任何单位或个人不得将本站内容或服务用于商业目的。
+        7.小样影视APP一切资源仅为学习交流娱乐所用，请在下载后24小时内删除，未经版权许可，任何单位或个人不得将本站内容或服务用于商业目的。
     </string>
 
     <string name="no_url">播放地址无效</string>
@@ -202,13 +202,13 @@
     <string name="picture_ratio">画面比例</string>
     <string name="high_v">高清</string>
     <string name="esp_text">剧集</string>
-    <string name="commend_tv1">扫描上边二维码，下载玉米电影</string>
-    <string name="commend_tv2">官网：dingdian.vip</string>
+    <string name="commend_tv1">扫描上边二维码，下载小样影视</string>
+    <string name="commend_tv2">官网：xy11.xyz</string>
     <string name="commend_tv3">保存二维码到手机，如遇APP无法打开扫描二维码或打开官网重新下载即可</string>
 
     <string name="ad">广告</string>
     <string name="official">公众号：yingmi2019</string>
-    <string name="website">官方网站：dingdian.vip</string>
+    <string name="website">官方网站：xy11.xyz</string>
     <string name="qq">QQ群：1009227337</string>
 
     <string name="choicecastdevice">选择投屏设备</string>
